@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Кто хочет стать миллионером</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script src="../js/scorm_api.js"></script>
+</head>
+<body>
+    <div class="page-container">
+        <div class="orange-block">
+            <!-- 1-я панель -->
+            <div class="panel active">
+                <span class="panel-number">1/3</span>
+                <p class="panel-text">
+                    Привет! Это диалоговый тренажер, который позволит тебе закрепить эффективный скрипт для обслуживания наших гостей. Всё будет, как в реальной кофейне Simple Coffee: реальный гость и частые вопросы гостей.
+                </p>
+                <button class="next-btn">Далее</button>
+            </div>
+
+            <!-- 2-я панель -->
+            <div class="panel">
+                <span class="panel-number">2/3</span>
+                <p class="panel-text">
+                    Твоя задача - обслужить гостя эффективно и быстро. Гость должен уйти довольным и хотеть вернуться к нам как можно скорее.
+                </p>
+                <div class="btn_content">
+                    <button class="back-btn">Назад</button>
+                    <button class="next-btn">Далее</button>
+                </div>
+            </div>
+
+            <!-- 3-я панель -->
+            <div class="panel">
+                <span class="panel-number">3/3</span>
+                <p class="panel-text">
+                    Каждый гость - новая ситуация.
+                </p>
+                <div class="btn_content">
+                    <button class="back-btn">Назад</button>
+                    <button class="next-btn">Вперед!</button>
+                </div>
+            </div>
+
+            <!-- 4-я панель (Денис) -->
+            <div class="denis_module panel">
+                <!-- Слева картинка персонажа Дениса -->
+                <img src="https://storage.yandexcloud.net/audio-test-sc/85277c24c1fd46eba1add9dcb3947be5.png"
+                     alt="Денис" />
+                <!-- Справа «плашка» для текста и кнопки -->
+                <div class="denis_text_block">
+                    <p class="panel-text">
+                        Вы уже знакомились с Денисом – бариста Simple Coffee. Сегодня ему предстоит грамотно обслуживать и общаться с гостями кофейни. Помоги Денису правильно обслужить гостя.
+
+                    </p>
+                    <button class="next-btn denis">Пообщаться с гостем</button>
+                </div>
+            </div>
+
+            <!-- Шестой экран - Диалоговый тренажёр -->
+            <div class="dialog">
+                <div class="dialog-scene">
+                    <!-- Фон с кассой -->
+                    <div class="dialog-background"></div>
+
+                    <!-- Гость (разные эмоциональные состояния) -->
+                    <div class="character-guest">
+                        <div class="character-name">Гость</div>
+                    </div>
+
+                    <!-- Руки бариста (показываются только когда говорит бариста) -->
+                    <div class="barista-hands"></div>
+
+                    <!-- Диалоговое окно -->
+                    <div class="dialog-box">
+                        <div class="speaker-name">Денис</div>
+                        <div class="dialog-text">Добрый день! Что для вас приготовить?</div>
+                    </div>
+                </div>
+
+                <div class="progress-indicator">
+                    <!-- Снизу — грустный эмодзи -->
+                    <div class="emoji-bottom">😢</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <!-- Сверху — веселый эмодзи -->
+                    <div class="emoji-top">😊</div>
+                </div>
+
+                <!-- Заголовок вопроса -->
+                <div class="question-header">
+                    Поприветствуйте гостя
+                </div>
+                <div class="answer-options">
+                    <button class="answer-option" data-correct="true">Добрый день! Что для вас приготовить?</button>
+                </div>
+
+                <!-- Уведомление об ошибке или завершении -->
+                <div class="notification">
+                    <div class="notification-content">
+                        <p class="notification-text">Текст уведомления</p>
+                        <button class="notification-btn">Продолжить</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel completion-panel">
+                <p class="panel-text">
+                    Поздравляю, вы успешно справились с диалогом!
+                </p>
+                <button class="next-btn" id="finish-btn">Завершить</button>
+            </div>
+        </div>
+    </div>
+
+    <audio id="dialog-audio"
+           src="https://storage.yandexcloud.net/audio-test-sc/%D0%97%D0%B2%D1%83%D0%BA%20%D0%B4%D0%B8%D0%B0%D0%BB%D0%BE%D0%B3%D0%BE%D0%B2%D0%BE%D0%B3%D0%BE%20%D1%82%D1%80%D0%B5%D0%BD%D0%B0%D0%B6%D0%B5%D1%80%D0%B0.mp3"
+           loop
+           preload="auto"></audio>
+
+    <script src="main.js"></script>
+
+</body>
+</html>

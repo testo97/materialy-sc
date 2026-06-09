@@ -1,0 +1,1408 @@
+﻿* {
+    font-family: 'Montserrat Alternates', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    font-family: 'Montserrat Alternates', sans-serif;
+    /* Отключаем прокрутку по умолчанию */
+    overflow: hidden;
+}
+    body::after {
+        position: absolute;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+        z-index: -1;
+        content:
+        /* Фоны и общие изображения */
+        url('https://storage.yandexcloud.net/audio-test-sc/Property%201%3D%D0%BA%D0%B0%D1%81%D1%81%D0%B0%20(1).png') 
+        url('https://storage.yandexcloud.net/audio-test-sc/Property%201%3D%D0%B2%D1%8B%D0%B4%D0%B0%D1%87%D0%B0.png') 
+        url('https://storage.yandexcloud.net/audio-test-sc/%D0%A4%D0%BE%D0%BD%20(1).png') 
+        url('https://storage.yandexcloud.net/audio-test-sc/%D0%A1%D1%82%D0%BE%D0%B9%D0%BA%D0%B0%204.png') 
+        url('https://storage.yandexcloud.net/audio-test-sc/6ac6a2ec398294a6bc27a49623b53fde.png') 
+        url('https://storage.yandexcloud.net/audio-test-sc/ae6528f381019f7b1343b7864fc384ef.png') 
+        url('https://storage.yandexcloud.net/audio-test-sc/78f845169f72320dce0ab666da3be964.png')
+        /* Изображения персонажей */
+        /* Алексей */
+        url('https://storage.yandexcloud.net/audio-test-sc/state%3D%D0%9D%D0%B5%D0%B9%D1%82%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20%D0%B3%D0%BE%D1%81%D1%82%D1%8C%2C%20type%3DAlex.png') 
+        url('https://storage.yandexcloud.net/audio-test-sc/%D0%97%D0%BB%D0%BE%D0%B9%20%D0%B3%D0%BE%D1%81%D1%82%D1%8C%20(1).png') 
+        url('https://storage.yandexcloud.net/audio-test-sc/state%3D%D0%A1%D1%87%D0%B0%D1%81%D1%82%D0%BB%D0%B8%D0%B2%D1%8B%D0%B9%20%D0%B3%D0%BE%D1%81%D1%82%D1%8C%2C%20type%3DAlex%20(1).png')
+        url('https://storage.yandexcloud.net/audio-test-sc/state%3D%D0%93%D1%80%D1%83%D1%81%D1%82%D0%BD%D1%8B%D0%B9%20%D0%B3%D0%BE%D1%81%D1%82%D1%8C%2C%20type%3DAlex.png')
+        /* Галина */
+        url('https://storage.yandexcloud.net/audio-test-sc/%D0%93%D0%B0%D0%BB%D0%B8%D0%BD%D0%B0%20%D0%BD%D0%B5%D0%B9%D1%82%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F.png') 
+        url('https://storage.yandexcloud.net/audio-test-sc/%D0%93%D0%B0%D0%BB%D0%B8%D0%BD%D0%B0%20%D0%B7%D0%BB%D0%B0%D1%8F.png') 
+        url('https://storage.yandexcloud.net/audio-test-sc/%D0%93%D0%B0%D0%BB%D0%B8%D0%BD%D0%B0%20%D1%81%D1%87%D0%B0%D1%81%D1%82%D0%BB%D0%B8%D0%B2%D0%B0.png') 
+        url('https://storage.yandexcloud.net/audio-test-sc/%D0%93%D0%B0%D0%BB%D0%B8%D0%BD%D0%B0%20%D1%82%D1%80%D0%B5%D0%B1%D1%83%D0%B5%D1%82.png')
+        /* Тамара Ивановна */
+        url('https://storage.yandexcloud.net/audio-test-sc/Property%201%3D%D0%A2%D0%B0%D0%BC%D0%B0%D1%80%D0%B0%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2%D0%BD%D0%B0%20%D1%81%20%D0%B2%D0%BD%D1%83%D0%BA%D0%BE%D0%BC%20%D1%81%D1%87%D0%B0%D1%81%D1%82%D0%BB%D0%B8%D0%B2%D0%B0%2C%20%D1%80%D0%B0%D1%81%D0%BF%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%3D%D0%B4%D0%B0%D0%BB%D0%B5%D0%BA%D0%BE.png') 
+        url('https://storage.yandexcloud.net/audio-test-sc/Property%201%3D%D0%A2%D0%B0%D0%BC%D0%B0%D1%80%D0%B0%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2%D0%BD%D0%B0%20%D1%81%20%D0%B2%D0%BD%D1%83%D0%BA%D0%BE%D0%BC%20%D0%B7%D0%BB%D0%B0%2C%20%D1%80%D0%B0%D1%81%D0%BF%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%3D%D0%B4%D0%B0%D0%BB%D0%B5%D0%BA%D0%BE.png') 
+        url('https://storage.yandexcloud.net/audio-test-sc/Property%201%3D%D0%A2%D0%B0%D0%BC%D0%B0%D1%80%D0%B0%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2%D0%BD%D0%B0%20%D1%81%20%D0%B2%D0%BD%D1%83%D0%BA%D0%BE%D0%BC%20%D1%83%D0%B4%D0%B8%D0%B2%D0%BB%D0%B5%D0%BD%D0%B0%2C%20%D1%80%D0%B0%D1%81%D0%BF%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%3D%D0%B4%D0%B0%D0%BB%D0%B5%D0%BA%D0%BE.png')
+        /* Денис и элементы интерфейса */
+        url('https://storage.yandexcloud.net/audio-test-sc/85277c24c1fd46eba1add9dcb3947be5.png') 
+        url('https://storage.yandexcloud.net/audio-test-sc/%D0%A0%D1%83%D0%BA%D0%B8%201%201%20(1).png') 
+        url('https://storage.yandexcloud.net/audio-test-sc/state%3D%D0%BA%D0%BE%D1%84%D0%B5%20%D1%81%20%D1%81%D0%BE%D0%B1%D0%BE%D0%B9.png')
+        /* Изображения для выбора гостей */
+        url('https://storage.yandexcloud.net/audio-test-sc/%D0%9D%D0%B5%D0%B9%D1%82%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20%D0%B3%D0%BE%D1%81%D1%82%D1%8C%20(1).png') 
+        url('https://storage.yandexcloud.net/audio-test-sc/%D0%93%D0%B0%D0%BB%D0%B8%D0%BD%D0%B0%20%D0%BD%D0%B5%D0%B9%D1%82%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F.png') 
+        url('https://storage.yandexcloud.net/audio-test-sc/%D0%A2%D0%B0%D0%BC%D0%B0%D1%80%D0%B0%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2%D0%BD%D0%B0%20%D1%81%20%D0%B2%D0%BD%D1%83%D0%BA%D0%BE%D0%BC%20%D1%81%D1%87%D0%B0%D1%81%D1%82%D0%BB%D0%B8%D0%B2%D0%B0.png');
+    }
+
+.page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+}
+
+.orange-block {
+    width: 3000px;
+    height: 680px;
+    background-color: #FEF4EB;
+    border-radius: 16px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 20px;
+    /* Разрешаем прокрутку внутри блока */
+    overflow-y: auto;
+}
+
+/* Общий стиль для всех панелей */
+.panel {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    max-width: 100%;
+    min-height: 200px;
+    background-color: #FEF4EB;
+    border-radius: 12px;
+    border: 2px solid #BC854D;
+    text-align: center;
+    padding: 15px 24px;
+    gap: 10px;
+}
+    /* Активная панель */
+    .panel.active {
+        display: flex;
+    }
+
+.panel-text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Нумерация панелей */
+.panel-number {
+    text-align: right;
+    width: 100%;
+}
+
+/* Кнопки */
+.next-btn,
+.back-btn {
+    text-align: center;
+    padding: 9px 16px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #BC854D;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 152px;
+    height: auto;
+}
+
+
+
+/* Контейнер для кнопок */
+.btn_content {
+    display: flex;
+    gap: 16px;
+}
+
+/* --- Модуль с Денисом --- */
+.denis_module.panel {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: auto;
+    border: none;
+}
+
+    .denis_module.panel img {
+        max-width: 300px;
+        height: auto;
+    }
+
+.denis_text_block {
+    background-color: #FEF4EB;
+    border: 2px solid #BC854D;
+    border-radius: 12px;
+    padding: 15px 24px;
+    max-width: 100%;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.next-btn.denis{
+    width: 300px;
+}
+/* --- Пятая панель (Выбор гостя) --- */
+.panel-title {
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+/* Новый блок для 5-го экрана */
+.guest-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #FEF4EB; /* сохраняем общую цветовую палитру */
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    gap: 100px;
+}
+
+    /* При добавлении класса active он становится видимым */
+    .guest-screen.active {
+        display: flex;
+    }
+
+/* Шапка с заголовком */
+.guest-header {
+    background-color: rgba(188, 133, 77, 0.5);
+    border-radius: 16px;
+    width: 63%;
+    text-align: center;
+    padding: 20px;
+    color: black;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* Секция с вариантами гостей */
+.guest-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    margin-top: -30px;
+    flex-wrap: wrap;
+}
+
+.guest {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+    padding: 6px;
+}
+
+    .guest img {
+        width: 154.56px;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 8px;
+    }
+
+    .guest p {
+        font-size: 0.9rem;
+    }
+
+/* Блок с кнопками, закреплённый в правом нижнем углу */
+.guest-controls {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 16px;
+}
+
+.guest.selected {
+    border: 5px solid #B07C57;
+    border-radius: 8px;
+}
+
+.guest.completed {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* --- Шестой экран (диалоговый тренажёр) --- */
+.dialog {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #FEF4EB;
+}
+
+    .dialog.active {
+        display: flex;
+    }
+
+/* Сцена диалога */
+.dialog-scene {
+    width: 898px;
+    height: 300px;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+/* Фон сцены - новый фон с кассой */
+.dialog-background {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://storage.yandexcloud.net/audio-test-sc/Property%201%3D%D0%BA%D0%B0%D1%81%D1%81%D0%B0%20(1).png');
+    background-size: contain; /* Changed from cover to contain */
+    background-position: center;
+    background-repeat: no-repeat; /* Added to prevent repeating */
+}
+
+/* Персонаж гостя - теперь размещается за столом с помощью fixed position */
+.character-guest {
+    position: absolute;
+    bottom: 54px; /* Adjusted from 0 to give some space at the bottom */
+    right: 36%;
+    width: 400px; /* Changed from fixed width to auto */
+    height: 250px; /* Use percentage of container height */
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end; /* Align to bottom */
+}
+
+    .character-guest.neutral {
+        background-image: url('https://storage.yandexcloud.net/audio-test-sc/state%3D%D0%9D%D0%B5%D0%B9%D1%82%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20%D0%B3%D0%BE%D1%81%D1%82%D1%8C%2C%20type%3DAlex.png');
+        background-size: contain;
+        background-position: bottom;
+        background-repeat: no-repeat;
+    }
+
+    .character-guest.angry {
+        background-image: url('https://storage.yandexcloud.net/audio-test-sc/%D0%97%D0%BB%D0%BE%D0%B9%20%D0%B3%D0%BE%D1%81%D1%82%D1%8C%20(1).png');
+        background-size: contain;
+        background-position: bottom;
+        background-repeat: no-repeat;
+    }
+
+    .character-guest.excited {
+        background-image: url('https://storage.yandexcloud.net/audio-test-sc/state%3D%D0%A1%D1%87%D0%B0%D1%81%D1%82%D0%BB%D0%B8%D0%B2%D1%8B%D0%B9%20%D0%B3%D0%BE%D1%81%D1%82%D1%8C%2C%20type%3DAlex%20(1).png');
+        background-size: contain;
+        background-position: bottom;
+        background-repeat: no-repeat;
+    }
+
+.character-name {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    display: none;
+}
+
+/* Руки бариста - показываются только когда говорит бариста */
+.barista-hands {
+    position: absolute;
+    left: 15%;
+    bottom: 0;
+    width: 300px;
+    height: 150px;
+    background-image: url('https://storage.yandexcloud.net/audio-test-sc/%D0%A0%D1%83%D0%BA%D0%B8%201%201%20(1).png');
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    display: none; /* По умолчанию скрыты */
+    z-index: 5;
+}
+
+    .barista-hands.active {
+        display: block;
+    }
+
+/* Диалоговое окно */
+.dialog-box {
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    padding: 15px;
+    color: white;
+    display: none;
+    z-index: 20;
+}
+
+    .dialog-box.active {
+        display: block;
+    }
+
+.speaker-name {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    font-size: 14px;
+}
+
+.dialog-text {
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Индикатор прогресса */
+.progress-indicator {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.emoji-top,
+.emoji-bottom {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #f59e0b;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.progress-bar {
+    position: relative; /* Добавлено для позиционирования заполнения относительно контейнера */
+    width: 8px;
+    height: 120px;
+    background-color: #d1d5db;
+    border-radius: 4px;
+    margin: 5px 0;
+    overflow: hidden;
+}
+
+.progress-fill {
+    position: absolute;
+    bottom: 0; /* Привязка к нижней границе */
+    left: 0;
+    width: 100%;
+    height: 20%; /* Это значение будет изменяться динамически через JS */
+    background: #689948;
+    border-radius: 4px;
+    transition: height 0.5s ease;
+}
+
+/* Заголовок вопроса */
+.question-header {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 1px solid #BC854C;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 389px;
+}
+
+/* Варианты ответов */
+.answer-options {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 10px;
+}
+
+.answer-option {
+    padding: 7px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    background-color: white;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+    .answer-option:hover {
+        background-color: #fff1e6;
+        border-color: #fbbf24;
+    }
+
+    .answer-option.highlight {
+        background-color: #fee2e2;
+        border-color: #fca5a5;
+    }
+
+        .answer-option.highlight:hover {
+            background-color: #fecaca;
+        }
+
+    .answer-option.selected {
+        background-color: #fef3c7;
+        border-color: #fbbf24;
+    }
+
+    .answer-option.correct {
+        background-color: #d1fae5;
+        border-color: #10b981;
+    }
+
+    .answer-option.incorrect {
+        background-color: #fee2e2;
+        border-color: #ef4444;
+    }
+
+/* Уведомление об ошибке или завершении */
+.notification {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    display: none;
+}
+
+    .notification.active {
+        display: flex;
+    }
+
+.notification-content {
+    background-color: #FEF4EB;
+    border: 2px solid #BC854D;
+    border-radius: 12px;
+    padding: 20px;
+    width: 400px;
+    max-width: 90%;
+    text-align: center;
+}
+
+.notification-text {
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.notification-btn {
+    padding: 9px 16px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #BC854D;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+    .notification-btn:hover {
+        background-color: #b86b25;
+    }
+.dialog-background.coffee-scene {
+    background-image: url('https://storage.yandexcloud.net/audio-test-sc/Property%201%3D%D0%B2%D1%8B%D0%B4%D0%B0%D1%87%D0%B0.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Персонаж гостя в сцене с кофе - перемещаем вправо */
+.character-guest.coffee-scene {
+    right: 10%; /* Перемещаем вправо */
+    bottom: -26px;
+}
+
+/* Рука с кофе - показывается справа */
+.coffee-hand {
+    position: absolute;
+    right: 13%;
+    bottom: 0;
+    width: 300px;
+    height: 156px;
+    background-image: url('https://storage.yandexcloud.net/audio-test-sc/state%3D%D0%BA%D0%BE%D1%84%D0%B5%20%D1%81%20%D1%81%D0%BE%D0%B1%D0%BE%D0%B9.png');
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    display: none; /* По умолчанию скрыта */
+    z-index: 25;
+}
+.character-guest.sad {
+    background-image: url("https://storage.yandexcloud.net/audio-test-sc/state%3D%D0%93%D1%80%D1%83%D1%81%D1%82%D0%BD%D1%8B%D0%B9%20%D0%B3%D0%BE%D1%81%D1%82%D1%8C%2C%20type%3DAlex.png");
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+
+    .coffee-hand.active {
+        display: block;
+    }
+.character-guest.galina-neutral {
+    background-image: url('https://storage.yandexcloud.net/audio-test-sc/%D0%93%D0%B0%D0%BB%D0%B8%D0%BD%D0%B0%20%D0%BD%D0%B5%D0%B9%D1%82%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F.png') !important;
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+
+.character-guest.galina-angry {
+    background-image: url('https://storage.yandexcloud.net/audio-test-sc/%D0%93%D0%B0%D0%BB%D0%B8%D0%BD%D0%B0%20%D0%B7%D0%BB%D0%B0%D1%8F.png') !important;
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+
+.character-guest.galina-excited {
+    background-image: url('https://storage.yandexcloud.net/audio-test-sc/%D0%93%D0%B0%D0%BB%D0%B8%D0%BD%D0%B0%20%D1%81%D1%87%D0%B0%D1%81%D1%82%D0%BB%D0%B8%D0%B2%D0%B0.png') !important;
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+
+.character-guest.galina-sad {
+    background-image: url('https://storage.yandexcloud.net/audio-test-sc/%D0%93%D0%B0%D0%BB%D0%B8%D0%BD%D0%B0%20%D1%82%D1%80%D0%B5%D0%B1%D1%83%D0%B5%D1%82.png') !important;
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+.character-guest {
+    transition: background-image 0.5s ease-in-out;
+}
+    .character-guest.emotion-transition {
+        animation: pulse 0.5s ease-in-out;
+    }
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Анимации для сцены с кофе */
+.dialog-background.coffee-scene {
+    transition: background-image 0.8s ease-in-out;
+}
+
+.character-guest.coffee-scene {
+    transition: right 0.8s ease-in-out, bottom 0.8s ease-in-out;
+}
+
+.coffee-hand {
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+    .coffee-hand.active {
+        display: block;
+        opacity: 1;
+    }
+
+/* Анимация для диалогового окна */
+.dialog-box {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+}
+
+    .dialog-box.active {
+        display: block;
+        opacity: 1;
+    }
+
+/* Анимация для рук бариста */
+.barista-hands {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+    .barista-hands.active {
+        display: block;
+        opacity: 1;
+    }
+
+.character-guest {
+    transition: background-image 0.5s ease-in-out;
+    z-index: 10; /* Средний слой для персонажа */
+}
+
+/* Фон диалоговой сцены */
+.dialog-background {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://storage.yandexcloud.net/audio-test-sc/%D0%A4%D0%BE%D0%BD%20(1).png");
+    background-position: center;
+    z-index: 1; /* Нижний слой для фона */
+}
+
+/* Стойка для диалоговой сцены */
+.counter {
+    position: absolute;
+    bottom: 0px;
+    left: 19.7%;
+    width: 60.6%;
+    height: 120px; /* Высота стойки */
+    background-image: url("https://storage.yandexcloud.net/audio-test-sc/%D0%A1%D1%82%D0%BE%D0%B9%D0%BA%D0%B0%204.png");
+    background-size: contain;
+    background-position: bottom center;
+    background-repeat: repeat-x;
+    z-index: 20; /* Верхний слой для стойки */
+}
+
+/* Специальные стили для Галины */
+.character-guest.galina-neutral {
+    background-image: url("https://storage.yandexcloud.net/audio-test-sc/%D0%93%D0%B0%D0%BB%D0%B8%D0%BD%D0%B0%20%D0%BD%D0%B5%D0%B9%D1%82%D1%80%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F.png") !important;
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+
+.character-guest.galina-angry {
+    background-image: url("https://storage.yandexcloud.net/audio-test-sc/%D0%93%D0%B0%D0%BB%D0%B8%D0%BD%D0%B0%20%D0%B7%D0%BB%D0%B0%D1%8F.png") !important;
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+
+.character-guest.galina-excited {
+    background-image: url("https://storage.yandexcloud.net/audio-test-sc/%D0%93%D0%B0%D0%BB%D0%B8%D0%BD%D0%B0%20%D1%81%D1%87%D0%B0%D1%81%D1%82%D0%BB%D0%B8%D0%B2%D0%B0%D1%8F.png") !important;
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+
+.character-guest.galina-sad {
+    background-image: url("https://storage.yandexcloud.net/audio-test-sc/%D0%93%D0%B0%D0%BB%D0%B8%D0%BD%D0%B0%20%D1%82%D1%80%D0%B5%D0%B1%D1%83%D0%B5%D1%82.png") !important;
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+
+/* Персонаж гостя - позиционирование */
+.character-guest {
+    position: absolute;
+    bottom: -26px; /* Поднимаем персонажа над стойкой */
+    right: 36%;
+    width: 430px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* Руки бариста - показываются только когда говорит бариста */
+.barista-hands {
+    position: absolute;
+    left: 15%;
+    bottom: 0px; /* Поднимаем руки над стойкой */
+    width: 300px;
+    height: 240px;
+    background-image: url("https://storage.yandexcloud.net/audio-test-sc/%D0%A0%D1%83%D0%BA%D0%B8%201%201%20(1).png");
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    display: none; /* По умолчанию скрыты */
+    z-index: 25; /* Выше персонажа, но ниже стойки */
+}
+
+/* Рука с кофе - показывается справа */
+.coffee-hand {
+    position: absolute;
+    right: 13%;
+    bottom: 1px; /* Поднимаем руку над стойкой */
+    width: 300px;
+    height: 156px;
+    background-image: url("https://storage.yandexcloud.net/audio-test-sc/state%3D%D0%BA%D0%BE%D1%84%D0%B5%20%D1%81%20%D1%81%D0%BE%D0%B1%D0%BE%D0%B9.png");
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    display: none; /* По умолчанию скрыта */
+    z-index: 25; /* Выше персонажа, но ниже стойки */
+}
+
+/* Анимации для смены эмоций */
+.character-guest.emotion-transition {
+    animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Анимации для сцены с кофе */
+.character-guest.coffee-scene {
+    right: 16%; /* Перемещаем вправо */
+    bottom: -26px; /* Сохраняем высоту над стойкой */
+    transition: right 0.8s ease-in-out;
+}
+
+.coffee-hand {
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+    .coffee-hand.active {
+        display: block;
+        opacity: 1;
+    }
+
+/* Анимация для диалогового окна */
+.dialog-box {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+    z-index: 30; /* Поверх всех элементов */
+}
+
+    .dialog-box.active {
+        display: block;
+        opacity: 1;
+    }
+
+/* Анимация для рук бариста */
+.barista-hands {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+    .barista-hands.active {
+        display: block;
+        opacity: 1;
+    }
+
+/* Индикатор прогресса должен быть поверх всех элементов */
+.progress-indicator {
+    z-index: 40;
+}
+.progress-indicator {
+    position: absolute;
+    top: 10px; /* Позиционируем сверху */
+    left: 50%; /* Центрируем по горизонтали */
+    transform: translateX(-50%); /* Центрируем по горизонтали */
+    display: flex;
+    flex-direction: row; /* Меняем на горизонтальное расположение */
+    align-items: center;
+    z-index: 40;
+}
+
+.emoji-top,
+.emoji-bottom {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #f59e0b;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.progress-bar {
+    position: relative;
+    width: 350px; /* Меняем ширину и высоту местами */
+    height: 8px;
+    background-color: #d1d5db;
+    border-radius: 4px;
+    margin: 0 5px; /* Меняем отступы для горизонтального расположения */
+    overflow: hidden;
+}
+
+.progress-fill {
+    position: absolute;
+    left: 0; /* Привязка к левой границе */
+    top: 0;
+    height: 100%; /* Высота всегда 100% */
+    width: 20%; /* Это значение будет изменяться динамически через JS */
+    background: #689948;
+    border-radius: 4px;
+    transition: width 0.5s ease; /* Меняем height на width */
+}
+
+/* Уведомление должно быть поверх всех элементов */
+.notification {
+    z-index: 1000;
+}
+
+
+.two-hands {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 400px;
+    height: 200px;
+    background-image: url("https://storage.yandexcloud.net/audio-test-sc/78f845169f72320dce0ab666da3be964.png");
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    display: none;
+    z-index: 25;
+}
+
+    .two-hands.active {
+        display: block;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+    .two-hands.active {
+        display: block;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Стили для модального окна с жалобой */
+.complaint-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.complaint-modal-content {
+    background-color: #fef4eb;
+    border: 2px solid #bc854d;
+    border-radius: 12px;
+    padding: 30px;
+    width: 450px;
+    max-width: 90%;
+    text-align: center;
+}
+
+    .complaint-modal-content h3 {
+        color: #bc854d;
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+
+    .complaint-modal-content p {
+        margin-bottom: 30px;
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+.complaint-modal-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.complaint-modal-next,
+.complaint-modal-finish {
+    padding: 12px 24px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #bc854d;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .complaint-modal-next:hover,
+    .complaint-modal-finish:hover {
+        background-color: #a06b35;
+    }
+.cash-register {
+    position: absolute;
+    right: 39%;
+    bottom: 11%;
+    width: 150px;
+    height: 150px;
+    background-image: url("https://storage.yandexcloud.net/audio-test-sc/6ac6a2ec398294a6bc27a49623b53fde.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 20;
+    transition: all 0.5s ease-in-out;
+}
+
+.payment-terminal {
+    position: absolute;
+    right: 54%;
+    bottom: 19%;
+    width: 80px;
+    height: 80px;
+    background-image: url("https://storage.yandexcloud.net/audio-test-sc/ae6528f381019f7b1343b7864fc384ef.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 21;
+    transition: all 0.5s ease-in-out;
+}
+
+/* Add coffee scene positioning for cash register and terminal */
+.cash-register.coffee-scene {
+    right: auto;
+    left: 20%;
+}
+
+.payment-terminal.coffee-scene {
+    right: auto;
+    left: 13%;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Styles for the complaint book modal */
+.complaint-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.complaint-modal-content {
+    background-color: #fef4eb;
+    border: 2px solid #bc854d;
+    border-radius: 12px;
+    padding: 30px;
+    width: 450px;
+    max-width: 90%;
+    text-align: center;
+}
+
+    .complaint-modal-content h3 {
+        color: #bc854d;
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+
+    .complaint-modal-content p {
+        margin-bottom: 30px;
+        font-size: 18px;
+        line-height: 1.5;
+    }
+
+.complaint-modal-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.complaint-modal-next,
+.complaint-modal-finish {
+    padding: 12px 24px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #bc854d;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+    .complaint-modal-next:hover,
+    .complaint-modal-finish:hover {
+        background-color: #a06b35;
+    }
+
+.dialog {
+    align-items: stretch;
+    flex-direction: column;
+    align-items: center;
+    padding: 2px;/* чтобы flex‑элемент не сужался */
+}
+
+.dialog-scene {
+    width: 900px !important;
+    height: 600px !important;
+    margin: 3px auto;
+}
+
+.dialog-background {
+    top: 0 !important;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin-top: 6px;
+    background-size: cover; /* чтобы заполнял 900×600 */
+    background-position: center;
+}
+.counter{
+    left: 0%;
+    width: 100%;
+}
+.character-guest {
+    bottom: -7px;
+    height: 456px;
+}
+.cash-register {
+    bottom: 13%;
+}
+.dialog-box{
+    width: 100%;
+}
+.answer-options{
+    gap: 4px;
+}
+.question-header {
+    margin-bottom: 4px;
+    margin-top: 10px;
+}
+#start-dialog-btn {
+    width: 168px;
+}
+/* --- Адаптивность для мобильных устройств --- */
+@media (max-width: 768px) {
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+
+    /* Стили для диалогового экрана */
+    .next-btn, .back-btn {
+        width: 107px;
+    }
+
+    .denis_module.panel img {
+        max-width: 254px;
+        height: 254px;
+    }
+    .denis_module.panel {
+        flex-direction: column;
+    }
+    .cash-register {
+        right: 29%;
+        height: 99px;
+        bottom: 11%;
+    }
+    .payment-terminal {
+        right: 41%;
+        height: 65px;
+        bottom: 14%;
+    }
+    .character-guest {
+        height: 309px;
+        right: 32%;
+    }
+    .dialog-scene {
+        width: 252px !important;
+    }
+    
+    .dialog-text{
+        font-size: 11px;
+        word-wrap: break-word;
+    }
+    
+    .barista-hands{
+        left: 23%;
+    }
+    .coffee-hand {
+        right: 24%;
+        height: 104px;
+    }
+    .character-guest.coffee-scene {
+        right: 24%;
+        bottom: -19px;
+        height: 309px;
+    }
+    .guest-screen {
+        gap: 95px;
+    }
+    .guest img {
+        width: 72.56px;
+        height: auto;
+    }
+    .guest-options{
+        flex-wrap: wrap;
+        gap: 0px;
+    }
+    .question-header {
+        font-size: 12px;
+        margin-top: 7px;
+    }
+    .answer-option{
+        padding: 7px;
+        font-size: 10px;
+    }
+
+}
+.character-guest.tamara-neutral {
+    background-image: url("https://storage.yandexcloud.net/audio-test-sc/Property%201%3D%D0%A2%D0%B0%D0%BC%D0%B0%D1%80%D0%B0%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2%D0%BD%D0%B0%20%D1%81%20%D0%B2%D0%BD%D1%83%D0%BA%D0%BE%D0%BC%20%D1%81%D1%87%D0%B0%D1%81%D1%82%D0%BB%D0%B8%D0%B2%D0%B0%2C%20%D1%80%D0%B0%D1%81%D0%BF%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%3D%D0%B4%D0%B0%D0%BB%D0%B5%D0%BA%D0%BE.png") !important;
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+
+.character-guest.tamara-angry {
+    background-image: url("https://storage.yandexcloud.net/audio-test-sc/Property%201%3D%D0%A2%D0%B0%D0%BC%D0%B0%D1%80%D0%B0%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2%D0%BD%D0%B0%20%D1%81%20%D0%B2%D0%BD%D1%83%D0%BA%D0%BE%D0%BC%20%D0%B7%D0%BB%D0%B0%2C%20%D1%80%D0%B0%D1%81%D0%BF%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%3D%D0%B4%D0%B0%D0%BB%D0%B5%D0%BA%D0%BE.png") !important;
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+
+.character-guest.tamara-surprised {
+    background-image: url("https://storage.yandexcloud.net/audio-test-sc/Property%201%3D%D0%A2%D0%B0%D0%BC%D0%B0%D1%80%D0%B0%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2%D0%BD%D0%B0%20%D1%81%20%D0%B2%D0%BD%D1%83%D0%BA%D0%BE%D0%BC%20%D1%83%D0%B4%D0%B8%D0%B2%D0%BB%D0%B5%D0%BD%D0%B0%2C%20%D1%80%D0%B0%D1%81%D0%BF%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%3D%D0%B4%D0%B0%D0%BB%D0%B5%D0%BA%D0%BE.png") !important;
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+
+/* Анимация смены эмоций для Тамары */
+.character-guest.emotion-transition {
+    animation: pulse 0.5s ease-in-out;
+}
+
+.dialog-text.typing::after {
+    content: "";
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: #fff; /* цвет курсора */
+    margin-left: 4px;
+    animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.character-guest.tamara-scaled {
+    transform: scale(0.65) translateY(-201px); /* меньше и повыше */
+    transition: transform 0.5s ease;
+}
+
+@media (max-width: 400px) {
+    /* Подгоняем сцену диалога под всю ширину */
+    .dialog-scene {
+        width: 276px !important;
+        height: 581px !important; /* увеличиваем, чтобы персонаж не обрезался */
+        margin: 0 auto;
+    }
+    .panel-text{
+        font-size: 12px;
+    }
+
+    /* Делаем стойку выше и на всю ширину */
+    .counter {
+        bottom: -40px;
+        height: 234px;
+        background-size: initial;
+    }
+    .cash-register {
+        right: 2%;
+        height: 225px;
+        bottom: 11%;
+    }
+    .payment-terminal {
+        right: 49%;
+        height: 80px;
+        bottom: 23%;
+    }
+
+    /* Настраиваем персонажа: видим полностью */
+    .character-guest {
+        height: 417px;
+        right: -18%;
+        bottom: 63px;
+    }
+
+    /* Кнопки навигации чуть меньше */
+    .next-btn, .back-btn {
+        width: 80px;
+        font-size: 14px;
+        padding: 11px 1px;
+    }
+
+    .barista-hands {
+        left: -20%;
+        height: 200px;
+    }
+    ..character-guest.coffee-scene {
+        right: -51%;
+        bottom: 23px;
+        height: 417px;
+    }
+    .payment-terminal.coffee-scene {
+        right: auto;
+        left: -151%;
+    }
+
+    /* Диалоговое окно */
+    .dialog-box {
+        width: 97% !important;
+        bottom: 5px !important;
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .cash-register.coffee-scene {
+        right: auto;
+        left: -43%;
+    }
+    .character-guest.coffee-scene {
+        right: -20%;
+        bottom: 75px;
+        height: 360px;
+    }
+    .coffee-hand {
+        right: -29%;
+        height: 199px;
+    }
+
+    /* Текст вопросов и ответов */
+    .question-header {
+        font-size: 11px;
+        margin-bottom: 6px;
+        max-width: 231px;
+    }
+
+    .answer-option {
+        font-size: 10px;
+        padding: 6px;
+    }
+
+    /* Рука с кофе */
+    
+
+    /* Руки бариста */
+    .panel{
+        max-width: 90%;
+    }
+    .next-btn.denis {
+        width: 169px;
+    }
+    /* Убираем лишние отступы в контейнере */
+    .answer-options, .guest-options {
+        gap: 4px;
+    }
+
+    .character-guest.tamara-scaled {
+        transform: scale(0.45) translateY(-76px);
+        transition: transform 0.5s ease;
+    }
+    #start-dialog-btn {
+        width: 122px;
+    }
+    .guest-header {
+        width: 78%;
+    }
+    .guest-controls {
+        right: 6px;
+    }
+}
+
+.character-guest.tamara-background {
+    position: absolute;
+    right: 42%;
+    bottom: 199px;
+    width: 300px;
+    height: 215px;
+    background-image: url("https://storage.yandexcloud.net/audio-test-sc/Property%201%3D%D0%A2%D0%B0%D0%BC%D0%B0%D1%80%D0%B0%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2%D0%BD%D0%B0%20%D1%81%20%D0%B2%D0%BD%D1%83%D0%BA%D0%BE%D0%BC%20%D1%81%D1%87%D0%B0%D1%81%D1%82%D0%BB%D0%B8%D0%B2%D0%B0%2C%20%D1%80%D0%B0%D1%81%D0%BF%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%3D%D0%B4%D0%B0%D0%BB%D0%B5%D0%BA%D0%BE.png");
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    z-index: 5;
+    // Ниже основного персонажа display: none;
+}
+
+.character-guest.tamara-foreground {
+    position: absolute;
+    right: 36%;
+    bottom: -26px;
+    width: 430px;
+    height: 421px;
+    background-image: url("https://storage.yandexcloud.net/audio-test-sc/Property%201%3D%D0%A2%D0%B0%D0%BC%D0%B0%D1%80%D0%B0%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2%D0%BD%D0%B0%20%D1%81%20%D0%B2%D0%BD%D1%83%D0%BA%D0%BE%D0%BC%20%D1%81%D1%87%D0%B0%D1%81%D1%82%D0%BB%D0%B8%D0%B2%D0%B0%2C%20%D1%80%D0%B0%D1%81%D0%BF%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%3D%D0%B4%D0%B0%D0%BB%D0%B5%D0%BA%D0%BE.png");
+    background-size: contain;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    z-index: 10;
+    display: none;
+}

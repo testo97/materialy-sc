@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Кто хочет стать миллионером</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="../js/scorm_api.js"></script>
+</head>
+<body>
+
+    <div class="game-container">
+        <!-- Экран прогресса -->
+        <div id="progress-screen" class="screen">
+            <h2>Ваш прогресс</h2>
+            <ul id="progress-list"></ul>
+        </div>
+
+        <!-- Экран вопроса -->
+        <div id="question-screen" class="screen">
+            <div class="question-content">
+                <!-- Левая колонка: вопрос и варианты ответа -->
+                <div class="left-column">
+                    <div class="arrow-box">
+                        <span id="question-text"></span>
+                    </div>
+                    <div id="answers-container"></div>
+                </div>
+                <!-- Правая колонка: изображение -->
+                <div class="right-column">
+                    <img class="man" src="images/ChatGPT Image 4 апр. 2025 г., 18_48_28 1.png" alt="Ведущий" />
+                </div>
+            </div>
+            <!-- Поп-ап с информацией -->
+            <div id="popup-info" class="popup-overlay">
+                <div class="popup-content">
+                    <p>Добро пожаловать в игру, где ваши знания могут сделать вас миллионером! Каждый вопрос - это шаг к победе, но одно неверное решение - и игра окончена.</p>
+                    <button id="close-popup-btn">Старт!</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Экран ошибки -->
+        <div id="error-screen" class="screen">
+            <div class="error-man-wrapper">
+                <img class="error-man" src="images/losing (2) 2.png" alt="Проигрыш">
+            </div>
+            <div id="error-popup" class="popup-overlay">
+                <div class="popup-content">
+                    <p>Упс! Ты ошибся!</p>
+                    <button id="retry-btn">Попробовать снова</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Экран успеха -->
+        <div id="success-screen" class="screen">
+            <div class="success-man-wrapper">
+                <img class="success-man" src="images/millioner2 1.png" alt="Победа">
+            </div>
+            <div id="success-popup" class="popup-overlay">
+                <div class="popup-content">
+                    <p>Ты миллионер!</p>
+                    <button id="finish-btn">Ура!</button>
+                </div>
+            </div>
+        </div>
+
+        <audio id="thinking-audio" src="audio/Ответ получен.mp3"></audio>
+        <audio id="correct-audio" src="audio/Верный ответ.mp3"></audio>
+        <audio id="wrong-audio" src="audio/Неправильно_и_одновременно_пройгрыш.mp3"></audio>
+        <audio id="win-game-audio" src="audio/Итоговая победа.mp3"></audio>
+        <script src="main.js"></script>
+    </div>
+
+    <div id="scorm-preloader" style="
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    z-index: 10000;
+    text-align: center;
+    max-width: 400px;
+">
+        <h3>Загрузка учебного материала</h3>
+        <p>Перед игрой должны загрузиться все данные, пожалуйста, подождите.</p>
+        <p>Если проблема сохраняется, попробуйте:</p>
+        <ul style="list-style-type: disc; list-style-position: outside; margin: 0; padding-left: 20px; color: orange;">
+            <li style="margin-bottom: 20px;"><div style="color: black;">Обновить страницу (F5)</div></li>
+            <li style="margin-bottom: 20px;"><div style="color: black;">Зайти с компьютера</div></li>
+            <li style="margin-bottom: 20px;"><div style="color: black;">Проверить интернет-соединение</div></li>
+        </ul>
+        <button onclick="hidePreloader()" style="
+        padding: 10px 20px;
+        background: #BC854D;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 15px;
+    ">
+            Понятно
+        </button>
+    </div>
+
+    <script>
+        function hidePreloader() {
+            document.getElementById('scorm-preloader').style.display = 'none';
+        }
+
+        // Автоматически скрыть через 10 секунд
+        
+
+        // Или скрыть когда SCORM полностью загрузится
+        if (typeof API != 'undefined') {
+            API.onLoad = function () {
+                hidePreloader();
+            };
+        }
+    </script>
+
+    <script src="main.js"></script>
+</body>
+</html>

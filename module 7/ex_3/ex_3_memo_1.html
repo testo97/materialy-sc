@@ -1,0 +1,124 @@
+
+<!DOCTYPE html><html lang="ru"><head>
+<meta charset="utf-8">
+<title>Мемо «Кружки»</title>
+
+<style>
+    /* страница – без собственного фона */
+    html,body{margin:0;padding:0;background:transparent;font-family:Arial,sans-serif}
+
+    /* основной контейнер: белая подложка + оранжевая рамка */
+    #wrap{
+        max-width:750px;
+        margin:20px auto;
+        padding:15px;
+        background:#fff;                    /* белая «карточка» */
+        border: 2px solid orange;          /* мягко-оранжевая рамка */
+        border-radius:15px;
+        box-shadow:0 2px 4px rgba(0,0,0,.08);
+    }
+
+    #memo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+
+    .card{
+        background:#6B5F59;color:#fff;height:90px;border-radius:5px;
+        display:flex;align-items:center;justify-content:center;
+        cursor:pointer;font-size:12px;padding:5px;text-align:center;
+        transition:.3s;overflow:hidden
+    }
+    .matched{background:#689948!important}
+    .card img{max-width:100%;max-height:75px;width:auto;height:auto;object-fit:contain;display:block}
+</style>
+</head><body>
+
+<div id="wrap">
+    <div style="background:#BC854D;color:#fff;border-radius:6px;padding:8px 15px;
+                font-size:14px;margin-bottom:15px;text-align:center">
+        Уровень <span id="lvl">1</span>
+    </div>
+    <div id="memo-grid"></div>
+</div>
+
+<script>
+const IMG='https://sc-learn.ru/moodle_media/module_7/ex_3/find_pair/';
+const data=[
+  {name:'Чайная кружка',   img:IMG+'tea_cup.png'},
+  {name:'Маленькая кружка',img:IMG+'small_cup.png'},
+  {name:'Средняя кружка',  img:IMG+'med_cup.png'},
+  {name:'Большая кружка',  img:IMG+'big_cup.png'}
+];
+
+function imgStyle(url){
+    const base='max-width:100%;object-fit:contain;display:block;';
+    if(url.includes('tea_cup.png'))   return base+'max-height:48px;';
+    if(url.includes('small_cup.png')) return base+'max-height:56px;';
+    if(url.includes('med_cup.png'))   return base+'max-height:64px;';
+    if(url.includes('big_cup.png'))   return base+'max-height:72px;';
+    return base+'max-height:72px;';
+}
+const grid   =document.getElementById('memo-grid');
+const lvlCtr =document.getElementById('lvl');
+let   canClick=true,selected=[];
+
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+function build(){
+    grid.innerHTML=''; lvlCtr.textContent=1; selected=[];
+    const cards=[];
+    data.forEach(d=>{
+        cards.push({t:'name',c:d.name,p:d.img});
+        cards.push({t:'img', c:d.img, p:d.name});
+    });
+    shuffle(cards).forEach(c=>{
+        const el=document.createElement('div');
+        el.className='card'; el.dataset.c=c.c; el.dataset.p=c.p; el.dataset.t=c.t;
+        el.innerHTML=c.t==='img'
+            ? `<img src="${c.c}" style="${imgStyle(c.c)}">`
+            : c.c;
+        el.onclick=()=>flip(el);
+        grid.appendChild(el);
+    });
+}
+
+function flip(card){
+    if(!canClick||card.classList.contains('matched')||card.classList.contains('flipped'))return;
+    card.classList.add('flipped'); card.style.background='#BC854D';
+    
+    selected.push(card); if(selected.length===2)check();
+}
+
+function check(){
+    canClick=false;
+    const [a,b]=selected;
+    const ok=a.dataset.p===b.dataset.c&&b.dataset.p===a.dataset.c;
+    if(ok){[a,b].forEach(c=>c.classList.add('matched'));}
+    setTimeout(()=>{
+        if(!ok){
+            [a,b].forEach(c=>{
+                c.classList.remove('flipped'); c.style.background='#6B5F59';
+                c.innerHTML=c.dataset.t==='img'
+                    ? `<img src="${c.dataset.c}" style="${imgStyle(c.dataset.c)}">`
+                    : c.dataset.c;
+            });
+        }
+        selected=[]; canClick=true;
+        if([...grid.children].every(c=>c.classList.contains('matched')))
+            window.parent.postMessage('gameCompleted', '*');
+    },800);
+}
+
+build();
+
+/* сообщаем родителю реальную высоту — чтобы iframe не оставлял пустоту снизу */
+function postHeight(){
+    const h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);
+    // напрямую подгоняем свой iframe (файл на том же домене — работает без скрипта Страницы)
+    try{ if(window.frameElement) window.frameElement.style.height=h+'px'; }catch(e){}
+    // запасной канал — сообщение родителю
+    if(window.parent!==window) parent.postMessage({height:h},'*');
+}
+window.addEventListener('load',postHeight);
+window.addEventListener('resize',postHeight);
+if(window.ResizeObserver) new ResizeObserver(postHeight).observe(document.body);
+</script>
+</body></html>

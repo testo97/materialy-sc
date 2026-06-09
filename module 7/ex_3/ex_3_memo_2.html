@@ -1,0 +1,171 @@
+
+<!DOCTYPE html><html lang="ru"><head>
+    <meta charset="utf-8"><title>Кружка → Прибор</title>
+    <style>
+     /* фон страницы полностью прозрачный – подхватится фон Moodle */
+     html,body{margin:0;padding:0;background:transparent;font-family:Arial,sans-serif}
+    
+     /* основной контейнер с рамкой */
+     #wrap{
+         max-width:860px;
+         margin:20px auto;
+         padding:16px;
+         background:#fff;                     /* белая «карточка» */
+         border:2px solid orange;             /* оранжевая рамка */
+         border-radius:15px;
+         box-shadow:0 2px 5px rgba(0,0,0,.1);
+     }
+    
+     #utensils{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    
+     .card{
+         display:flex;flex-direction:column;align-items:center;justify-content:center;
+         padding:14px 10px;border:1px solid #D6C7B4;border-radius:10px;background:#FEF4EB;
+         cursor:pointer;transition:.25s
+     }
+     .card:hover{transform:translateY(-2px)}
+     .card img{width:100px;max-width:100%;max-height:80px;object-fit:contain;margin-bottom:8px}
+     #mug-img{height:100px;max-width:100%;object-fit:contain;margin-bottom:12px}
+    .container{
+        display:flex;
+        gap:32px;
+        flex-wrap:wrap;
+        justify-content:center;
+        align-items:center;
+    }
+    #mug{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+    }
+    @media(width < 400px){
+        #mug-img{
+            height: 82px;
+    }
+        .card{
+            padding: 1px 6px;
+    
+    }	
+        .container{
+            gap: 10px;
+    }
+        #mug-name{
+            font-size: 15px;
+    }
+        .card img{
+            height: 36px;
+    }
+    }
+    </style></head><body>
+    
+    <div id="wrap">
+        <div style="margin-bottom:20px">
+            <div style="display:flex;justify-content:space-between;font-size:14px;font-weight:600;margin-bottom:6px">
+                <span>Подбери к кружке правильные предметы сервировки</span>
+                <span id="cnt">1/7 вопросов</span>
+            </div>
+            <div style="width:100%;height:4px;background:#e0e0e0;border-radius:2px;overflow:hidden">
+                <div id="bar" style="height:4px;width:0%;background:#8DC63F;transition:width .4s"></div>
+            </div>
+        </div>
+    
+        <div class="container">
+            <div id="mug" style="flex:1 1 220px;text-align:center;align-self:center">
+                <img id="mug-img" src="" style="margin-bottom:12px;height:100px;max-width:100%;object-fit:contain;">
+                <div id="mug-name" style="font-weight:700;font-size:18px"></div>
+            </div>
+            <div id="utensils" style="flex:1 1 300px"></div>
+        </div>
+    </div>
+    
+    <script>
+    const IMG='https://sc-learn.ru/moodle_media/module_7/ex_3/find_pair/';
+    function mugHeight(url){
+        if(url.includes('tea_cup.png'))   return '55px';
+        if(url.includes('small_cup.png')) return '65px';
+        if(url.includes('med_cup.png'))   return '78px';
+        if(url.includes('big_cup.png'))   return '90px';
+        return '100px';
+    }
+    const mugs=[
+     {img:IMG+'tea_cup.png',
+      name:'Чайная кружка<br>200 мл', utensil:'чайная ложка'},
+     {img:IMG+'small_cup.png',
+      name:'Маленькая кружка<br>220 мл', utensil:'чайная ложка'},
+     {img:IMG+'med_cup.png',
+      name:'Средняя кружка<br>360 мл', utensil:'коктейльная ложка'},
+     {img:IMG+'big_cup.png',
+      name:'Большая кружка<br>440 мл', utensil:'коктейльная ложка'},
+     {img:IMG+'drink_with_cream.png',
+      name:'Тёплый напиток со&nbsp;сливками', utensil:'коктейльная ложка'},
+     {img:IMG+'cold_drink.png',
+      name:'Холодный напиток', utensil:'трубочка'},
+     {img:IMG+'drink_with_cream.png',
+      name:'Холодный напиток со&nbsp;сливками', utensil:'трубочка + коктейльная ложка'}
+    ];
+    const utensils=[
+     {img:IMG+'tea_spoon.png',      name:'чайная ложка'},
+     {img:IMG+'straw.png', name:'трубочка'},
+     {img:IMG+'coctail_spoon.png', name:'коктейльная ложка'},
+     {img:IMG+'straw_with_coctail_spoon.png',   name:'трубочка + коктейльная ложка'}
+    ];
+    
+    const mugImg=document.getElementById('mug-img');
+    const mugName=document.getElementById('mug-name');
+    const cnt   =document.getElementById('cnt');
+    const bar   =document.getElementById('bar');
+    const utDiv =document.getElementById('utensils');
+    
+    utensils.forEach(u=>{
+      const d=document.createElement('div');
+      d.className='card'; d.dataset.n=u.name;
+      d.innerHTML=`<img src="${u.img}" style="margin-bottom:8px;width:100px;max-width:100%;max-height:80px;object-fit:contain;"><div style="font-size:13px;text-align:center">${u.name}</div>`;
+      utDiv.appendChild(d);
+    });
+    
+    let i=0,total=mugs.length,finished=false;
+    show(i);
+    
+    utDiv.onclick=e=>{
+      if(finished)return;
+      const card=e.target.closest('.card'); if(!card)return;
+      const ok=card.dataset.n===mugs[i].utensil;
+      card.style.background=ok?'#E1F1E7':'#F4E5E2';
+      setTimeout(()=>card.style.background='#FEF4EB',600);
+      if(ok){
+          if(i<total-1){
+              i++;
+              show(i);
+          }else{
+              bar.style.width='100%';
+              cnt.textContent=`${total}/${total} вопросов`;
+              finished=true;
+              utDiv.style.pointerEvents='none';
+              utDiv.querySelectorAll('.card').forEach(c=>c.style.cursor='default');
+              window.parent.postMessage('gameCompleted', '*');
+          }
+      }
+    };
+    
+    function show(idx){
+      mugImg.src=mugs[idx].img;
+      mugImg.style.height=mugHeight(mugs[idx].img);
+      mugName.innerHTML=mugs[idx].name;
+      cnt.textContent=`${idx+1}/${total} вопросов`;
+      bar.style.width=`${idx/total*100}%`;
+    }
+
+    /* сообщаем родителю реальную высоту — чтобы iframe не оставлял пустоту снизу */
+    function postHeight(){
+      const h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);
+      // напрямую подгоняем свой iframe (файл на том же домене — работает без скрипта Страницы)
+      try{ if(window.frameElement) window.frameElement.style.height=h+'px'; }catch(e){}
+      // запасной канал — сообщение родителю
+      if(window.parent!==window) parent.postMessage({height:h},'*');
+    }
+    window.addEventListener('load',postHeight);
+    window.addEventListener('resize',postHeight);
+    if(window.ResizeObserver) new ResizeObserver(postHeight).observe(document.body);
+    </script></body></html>
+    

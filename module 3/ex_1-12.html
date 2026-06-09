@@ -89,6 +89,7 @@
             <span class="close" style="position: absolute; top: 10px; right: 20px; cursor: pointer; font-size: 48px; color: #e67e00; padding: 10px; transition: transform 0.2s ease, color 0.2s ease;" onclick="closeModal()" onmouseover="this.style.transform='scale(1.2)'; this.style.color='#d36f00'" onmouseout="this.style.transform='scale(1)'; this.style.color='#e67e00'">×</span>
 
             <h2 id="modal-title" style="font-size: 24px; color: #333;"></h2>
+            <p id="modal-notice" style="display: none; text-align: left; font-size: 14px; color: #666; margin: 0 0 15px; line-height: 1.4;"></p>
             <img id="modal-image" src="" alt="Изображение" style="display: none; width: 100%; height: auto; margin-bottom: 15px; border-radius: 6px;">
             <ul id="modal-description" style="text-align: left; padding: 0; list-style-type: none;"></ul>
             <button class="ok-button" onclick="closeModal()" style="margin-top: 20px; padding: 10px 20px; background-color: #e67e00; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; transition: background 0.3s ease;" onmouseover="this.style.backgroundColor='#d36f00'" onmouseout="this.style.backgroundColor='#e67e00'">Окей</button>
@@ -99,24 +100,24 @@
         // Описания пунктов меню
         const menuItems = [{
                 title: "Десерты",
+                notice: "Наши десерты могут меняться, но формат остается.",
                 description: [
-                    "Торты:  медовик, классический чизкейк, брусничный пирог, яблочно-карамельный, морковный торт",
-                    "Пирожные: малиновый и лимонный тарты, макаруны и пончики",
+                    "Торты – медовики, чизкейки, карамельные торты и многое другое.",
+                    "Пирожное – тарты, макаруны и пончики",
                     "Конфеты ручной работы",
-                    "Печенье шоколадное и овсяное",
+                    "Печенье",
                     "Круассаны сливочные и шоколадные",
                     "Шоколадные медали «Simple Coffee»",
                     "Шоколадные батончики и орешки",
-                    "Мороженное в рожке: ванильное, шоколадное или клубничное"
+                    "Мороженое: ванильное, шоколадное и клубничное"
                 ],
                 image: "meals.jpg"
             },
             {
                 title: "Сытное",
                 description: [
-                    "Несколько видов рапов – «Рап Цезарь», «Рап с Лососем», «Рап Овощной», «Рап Терияки» и «Рап с Омлетом»",
-                    "Сэндвичи «Ветчина и сыр», «с лососем», «с курицей и беконом», «с бужениной»",
-                    "Круассаны с лососем или ветчиной",
+                    "Несколько видов рапов – чаще всего с курицей или рыбой",
+                    "Сэндвичи и салаты",
                     "Сырники",
                     "Каша рисовая и овсяная (на завтрак, до 12:00)",
                 ],
@@ -162,6 +163,15 @@
 
         function openModal(index) {
             document.getElementById("modal-title").innerText = menuItems[index].title;
+
+            const noticeEl = document.getElementById("modal-notice");
+            if (menuItems[index].notice) {
+                noticeEl.innerText = menuItems[index].notice;
+                noticeEl.style.display = "block";
+            } else {
+                noticeEl.style.display = "none";
+            }
+
             document.getElementById("modal-image").src = menuItems[index].image;
             document.getElementById("modal-image").style.display = "block";
 

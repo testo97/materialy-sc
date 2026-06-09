@@ -1,0 +1,181 @@
+<div id="avatar-text" style="display: flex; align-items: center; margin-bottom: 20px;">
+    <img src="https://sc-learn.ru/draftfile.php/29/user/draft/698536088/Наставник%20мини%202.png" alt="Avatar" style="border-radius: 50%; width: 60px; height: 60px; margin-right: 15px;">
+    <div style="background-color: #FFF4EC; border-radius: 15px; padding: 15px; display: flex; align-items: center;">
+        <p style="margin: 0;">Гость может сделать заказ «на месте» или «с собой». Рассмотри интерактивную схему, чтобы увидеть ключевые отличия между такими заказами (схема кликабельна).</p>
+    </div>
+</div>
+
+<!-- Меню -->
+<div class="menu" style="max-width: 320px; padding: 20px; border: 2px solid #d1d1d1; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin: 50px auto; color: #333;">
+    <h1 style="color: #8b704e; text-align: center;">Виды заказов</h1>
+
+    <!-- Категория "На месте" -->
+    <div class="category" style="font-weight: bold; cursor: pointer; padding: 12px; background: #8b704e; margin: 8px 0; border-radius: 6px; text-align: center; color: white; transition: background 0.3s ease;">
+        «На месте»
+    </div>
+    <div class="subcategory" style="cursor: pointer; padding: 10px; margin-left: 20px; background: rgb(248, 248, 248); border: 1px solid rgb(139, 112, 78); border-radius: 6px; margin-bottom: 8px; transition: background 0.3s; color: rgb(51, 51, 51);" onmouseover="this.style.background='#e5702a'; this.style.color='white'" onmouseout="this.style.background='#f8f8f8'; this.style.color='#333'" onclick="openModal(0)">Особенности
+    </div>
+    <!-- Категория "С собой" -->
+    <div class="category" style="font-weight: bold; cursor: pointer; padding: 12px; background: #8b704e; margin: 8px 0; border-radius: 6px; text-align: center; color: white; transition: background 0.3s ease;">
+        «С собой»
+    </div>
+    <div class="subcategory" style="cursor: pointer; padding: 10px; margin-left: 20px; background: rgb(248, 248, 248); border: 1px solid rgb(139, 112, 78); border-radius: 6px; margin-bottom: 8px; transition: background 0.3s; color: rgb(51, 51, 51);" onmouseover="this.style.background='#e5702a'; this.style.color='white'" onmouseout="this.style.background='#f8f8f8'; this.style.color='#333'" onclick="openModal(1)">Особенности
+    </div>
+</div>
+
+<!-- Модальное окно -->
+<div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7);">
+    <div id="modalContent" style="background:#fff; padding:20px; max-width:450px; width:90%; margin:auto; position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); text-align:center; border-radius:8px; color:#333; max-height:80vh; overflow-y:auto;">
+        <span onclick="closeModal()" style="position:absolute; top:10px; right:20px; cursor:pointer; font-size:48px; color:#e67e00; padding:10px; transition:transform 0.2s ease,color 0.2s ease;" onmouseover="this.style.transform='scale(1.2)'; this.style.color='#d36f00'" onmouseout="this.style.transform='scale(1)'; this.style.color='#e67e00'">×</span>
+        <h2 id="modal-title" style="font-size:24px; color:#333;"></h2>
+
+        <ul id="modal-description" style="text-align:left; padding:0; list-style-type:none;"></ul>
+        <button onclick="closeModal()" style="margin-top:20px; padding:10px 20px; background-color:#e67e00; color:white; border:none; border-radius:6px; cursor:pointer; font-size:16px; transition:background 0.3s ease;" onmouseover="this.style.backgroundColor='#d36f00'" onmouseout="this.style.backgroundColor='#e67e00'">Окей</button>
+    </div>
+</div>
+
+
+
+
+<!-- Вопрос 1 -->
+<h5 style="margin-top: 20px; margin-bottom: 15px;">1.&nbsp;Тестовое задание:&nbsp;</h5>
+<div style="border: 2px solid orange; border-radius: 15px; padding: 15px;">
+    <p>Выберите все верные утверждения:</p>
+
+    <div style="margin-bottom: 10px;">
+        <label style="display: flex; align-items: center;">
+            <input type="checkbox" id="q1a1" name="q1" value="0" style="margin-right: 10px;">
+            при заказе «на месте» мы обязательно предлагаем подставку для напитков
+        </label>
+    </div>
+
+    <div style="margin-bottom: 10px;">
+        <label style="display: flex; align-items: center;">
+            <input type="checkbox" id="q1a2" name="q1" value="0" style="margin-right: 10px;">
+            при заказе «с собой» гость получает скидку 10% на весь заказ
+        </label>
+    </div>
+
+    <div style="margin-bottom: 10px;">
+        <label style="display: flex; align-items: center;">
+        </label>
+    </div>
+
+    <div style="margin-bottom: 10px;">
+        <label style="display: flex; align-items: center;">
+            <input type="checkbox" id="q1a4" name="q1" value="1" style="margin-right: 10px;" data-gtm-form-interact-field-id="1">
+            заказ «на месте» предполагает красивую сервировку и использование керамической посуды
+        </label>
+    </div>
+
+    <div style="margin-bottom: 10px;">
+        <label style="display: flex; align-items: center;">
+            <input type="checkbox" id="q1a5" name="q1" value="0" style="margin-right: 10px;">
+            при заказе любого количества напитков из заказа «с собой» предлагается подставка под напитки
+        </label>
+    </div>
+
+
+    <div style="text-align: center; margin-bottom: 10px;">
+        <button onclick="checkAnswer1()" style="background-color: #FFD1B3; color: black; padding: 10px 20px; border: none; border-radius: 10px; cursor: pointer;">Проверить</button>
+    </div>
+
+    <p id="noSelection1" style="display: none; color: red; margin-top: 15px;">Сначала нужно выбрать ответ.</p>
+    <p id="result1" style="display: none; color: red; margin-top: 15px;">Ответ неверный. Попробуй снова.</p>
+    <p id="success1" style="display: none; color: green; margin-top: 15px;">Ответ верный! Можешь двигаться дальше.</p>
+</div>
+
+
+<div id="next-task-button-container" style="text-align: center; margin-top: 20px; display: none; justify-content: center;">
+    <button onclick="window.location.href='https://sc-learn.ru/mod/page/view.php?id=409';" style="background-color: #32CD32; color: white; padding: 15px 30px; border: none; border-radius: 10px; cursor: pointer;">К следующему заданию!</button>
+</div>
+
+<script>
+    function checkAnswer1() {
+        // Правильные ответы - q1a3 и q1a4 (3-й и 4-й чекбоксы)
+        const correctAnswers = ['q1a4'];
+        let allCorrect = true;
+        let anySelected = false;
+
+        // Проверяем все чекбоксы
+        const checkboxes = document.querySelectorAll('input[name="q1"]');
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) anySelected = true;
+
+            // Если это правильный ответ и не отмечен - ошибка
+            if (correctAnswers.includes(checkbox.id) && !checkbox.checked) {
+                allCorrect = false;
+            }
+            // Если это неправильный ответ и отмечен - ошибка
+            if (!correctAnswers.includes(checkbox.id) && checkbox.checked) {
+                allCorrect = false;
+            }
+        });
+
+        if (!anySelected) {
+            document.getElementById('noSelection1').style.display = 'block';
+            document.getElementById('result1').style.display = 'none';
+            document.getElementById('success1').style.display = 'none';
+        } else if (allCorrect) {
+            document.getElementById('success1').style.display = 'block';
+            document.getElementById('result1').style.display = 'none';
+            document.getElementById('noSelection1').style.display = 'none';
+            document.getElementById("next-task-button-container").style.display = 'flex';
+        } else {
+            document.getElementById('result1').style.display = 'block';
+            document.getElementById('success1').style.display = 'none';
+            document.getElementById('noSelection1').style.display = 'none';
+        }
+    }
+</script>
+
+<script>
+    // Данные для модальных окон
+    const menuItems = [{
+            title: "Особенности (на месте)",
+            description: [
+                "Заказ выдается на подносе",
+                "Десерты и напитки – в керамической посуде",
+                "Грамотная и красивая сервировка",
+                "Приборы",
+                "Если часть заказа гость просит «на месте», а часть «с собой», то позиции «на месте» выносятся как обычно на подносе, другая часть – в бумажном пакете гостю к столику"
+            ],
+            image: "eat-in.jpg" // Замените на ваш реальный путь к изображению
+        },
+        {
+            title: "Особенности (с собой)",
+            description: [
+                "Все позиции сложены в коробки, креманки и пакетики",
+                "Весь заказ сложен в пакет",
+                "Напитки – в одноразовых стаканах",
+                "При наличии 2 и более напитков предложена подставка"
+            ],
+            image: "takeaway.jpg" // Замените на ваш реальный путь к изображению
+        }
+    ];
+
+    // Открыть модальное окно
+    function openModal(index) {
+        document.getElementById("modal-title").innerText = menuItems[index].title;
+
+
+
+        const descList = document.getElementById("modal-description");
+        descList.innerHTML = "";
+        menuItems[index].description.forEach(text => {
+            const li = document.createElement("li");
+            li.innerText = text;
+            li.style.padding = "8px";
+            li.style.borderBottom = "1px solid #ddd";
+            li.style.fontSize = "16px";
+            descList.appendChild(li);
+        });
+
+        document.getElementById("modal").style.display = "block";
+    }
+
+    // Закрыть модальное окно
+    function closeModal() {
+        document.getElementById("modal").style.display = "none";
+    }
+</script>

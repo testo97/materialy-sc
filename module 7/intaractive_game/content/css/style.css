@@ -1,0 +1,666 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat Alternates',sans-serif;
+    background: #fff;
+    color: #000;
+    line-height: 1.25;
+}
+
+* {
+    font-family: 'Montserrat Alternates', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    font-family: 'Montserrat Alternates', sans-serif;
+    /* Отключаем прокрутку по умолчанию */
+}
+    body::after {
+        position: absolute;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+        z-index: -1;
+        content:
+        /* обложки для карточек */
+        url('../images/box_cremanka.png') url('../images/bag_large.png') url('../images/cup_togo_large_440.png') url('../images/glass_large.png') url('../images/plate_deep_porridge.png') url('../images/cutlery_icon.png') url('../images/box_dessert.png')
+    }
+
+.page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+}
+
+.orange-block {
+    width: 1600px;
+    height: 760px;
+    background-color: #EFEAE6;
+    border-radius: 16px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    box-sizing: border-box;
+    padding: 20px;
+    /* Разрешаем прокрутку внутри блока */
+    overflow-y: auto;
+}
+
+/* === Панель прогресса (сверху) === */
+.progress-panel {
+    width: 100%;
+    max-width: 1156px;
+    background: #fff;
+    border: 1.5px solid #BC854D;
+    border-radius: 16px;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+    .progress-panel .progress-label {
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: .05em;
+        white-space: nowrap;
+    }
+
+    .progress-track {
+        flex: 1;
+        height: 14px;
+        background: #FEF4EB;
+        border: 1px solid #BC854D;
+        border-radius: 999px;
+        overflow: hidden;
+    }
+
+    .progress-fill {
+        height: 100%;
+        width: 0;
+        background: #689948;
+        border-radius: 999px;
+        transition: width .35s ease;
+    }
+
+    .progress-panel .progress-count {
+        font-size: 14px;
+        font-weight: 600;
+        color: #689948;
+        white-space: nowrap;
+    }
+
+/* === Сообщение о корректировке (под заказом) === */
+.task-block .hint-message {
+    display: none;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #CD6146;
+    letter-spacing: .05em;
+}
+
+    .task-block .hint-message.show {
+        display: block;
+    }
+
+/* Общий стиль для всех панелей */
+.panel {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    max-width: 100%;
+    min-height: 200px;
+    background-color: #FEF4EB;
+    border-radius: 12px;
+    border: 2px solid #BC854D;
+    text-align: center;
+    padding: 15px 24px;
+    gap: 10px;
+}
+    /* Активная панель */
+    .panel.active {
+        display: flex;
+    }
+        .panel.active.value {
+            background-color: #FFFFFF;
+        }
+
+.panel-text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+
+/* Кнопки */
+.next-btn,
+.back-btn {
+    text-align: center;
+    padding: 9px 16px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #BC854D;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 152px;
+    height: auto;
+}
+
+
+
+/* Контейнер для кнопок */
+.btn_content {
+    display: flex;
+    gap: 16px;
+}
+
+.game {
+    display: flex;
+    gap: 40px; /* отступ между левой и правой колонкой */
+}
+
+/* === ЛЕВАЯ КОЛОНКА === */
+.left-side {
+    width: 640px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* —–– блок «Задание» ––– */
+.task-block {
+    background: #fff;
+    border: 1.5px solid #BC854D;
+    border-radius: 16px;
+    padding: 20px 30px;
+    min-height: 122px;
+    gap: 20px;
+}
+
+    .task-block h5 {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .task-block p {
+        font-size: 16px;
+        letter-spacing: .05em;
+    }
+
+/* ––– блок «Выбранные предметы» ––– */
+.picked-values {
+    background: #fff;
+    border: 1.5px solid #BC854D;
+    border-radius: 16px;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+    .picked-values h5 {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: .05em;
+    }
+
+.drop-zone {
+    flex: 1;
+    min-height: 200px; /* можно менять, если нужно больше места */
+    background: #FEF4EB;
+    border: 1px dashed #BC854D;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+/* ––– кнопки под drop-зоной ––– */
+.button-container {
+    display: flex;
+    gap: 43px;
+}
+
+    .button-container a {
+        flex: 1;
+        text-decoration: none;
+    }
+
+    .button-container div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 48px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 126%;
+        cursor: pointer;
+    }
+
+    .button-container a:first-child div {
+        border: 1px solid #777777;
+    }
+
+    .button-container a:last-child div {
+        background: #689948;
+        color: #fff;
+    }
+
+/* === ПРАВАЯ КОЛОНКА === */
+.right-side {
+    width: 476px;
+}
+
+.choose-area {
+    /* убираем flex-column */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* две колонки одинаковой ширины */
+    gap: 20px; /* промежуток как в макете */
+    padding: 30px; /* оставляем ваши внутренние отступы */
+    background: #fff;
+    border: 1.5px solid #BC854D;
+    border-radius: 16px;
+}
+    .choose-area > h5 {
+        grid-column: 1 / -1; /* занимает обе колонки */
+        margin-bottom: 10px; /* чтобы не прилипал к карточкам */
+    }
+
+    .choose-area h5 {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: .05em;
+    }
+
+/* сетка с предметами */
+.choose-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+.modal-mask {
+    position: fixed; /* перекрывает весь экран */
+    inset: 0;
+    background: rgba(255,255,255,.6);
+    backdrop-filter: blur(2px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* поверх всего */
+}
+
+    /* --- когда скрыт --- */
+    .modal-mask.hidden {
+        display: none;
+    }
+
+/* --- “приглушённая” игра до старта --- */
+.game.disabled {
+    opacity: 22.4;
+    pointer-events: none; /* клики не проходят */
+}
+.choose-block {
+    width: 100%;
+    height: 137px;
+    background: #FEF4EB;
+    border: 1.5px solid #BC854D;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: transform .15s ease;
+}
+    .choose-block:hover {
+        box-shadow: 5px 5px 4px 0px #00000040;
+    }
+    .choose-block:hover {
+        transform: translateY(-2px);
+    }
+
+    .choose-block img {
+        width: 64px;
+        height: 64px;
+        object-fit: contain;
+    }
+
+    .choose-block p {
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+        letter-spacing: .05em;
+    }
+
+modal-mask values{
+    display: none;
+}
+
+.modal-values {
+    position: fixed;
+    inset: 0;
+    display: none; /* по умолчанию скрыто */
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,.35); /* лёгкое затемнение */
+    z-index: 1100;
+}
+
+    .modal-values.active {
+        display: flex;
+    }
+    /* показываем через JS */
+
+    /* сама «карточка» */
+    .modal-values .panel {
+        position: static; /* чтобы не перекрывало .panel из intro */
+        width: 600px;
+        max-width: 90vw;
+    }
+
+        /* сетка 3 × n для внутренних choose-block */
+        .modal-values .panel > div {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+        }
+
+    /* чуть уменьшим карточки внутри, чтобы комфортно влезали */
+    .modal-values .choose-block {
+        height: 120px;
+    }
+
+.chosen {
+    position: relative;
+}
+
+    .chosen .remove {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #D33;
+        color: #fff;
+        font-size: 14px;
+        line-height: 18px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+/* лишний предмет */
+.wrong {
+    background-color: #CD6146 !important;
+}
+
+/* правильный заказ */
+.drop-zone.success {
+    background: #E1F1E7;
+}
+
+.drop-zone.error {
+    background: #FEF4EB;
+}
+
+.drop-zone {
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 16px; /* расстояние между карточками */
+}
+
+    /* компактная карточка в корзине */
+    .drop-zone .choose-block {
+        width: 120px; /* ≈ то, что на скрине */
+        height: 120px;
+        padding: 12px 8px;
+        gap: 10px;
+        box-shadow: none; /* тень убираем */
+    }
+
+        .drop-zone .choose-block img {
+            width: 48px;
+            height: 48px;
+        }
+
+        .drop-zone .choose-block p {
+            font-size: 12px;
+            line-height: 14px;
+        }
+
+/* крестик как на макете */
+.chosen .remove {
+    width: 20px;
+    height: 20px;
+    background: #FF715E; /* чуть ярче */
+    border: 2px solid #fff;
+    line-height: 16px;
+    font-size: 16px;
+}
+
+.missing-block {
+    width: 120px;
+    height: 120px;
+    margin: 0; /* кладётся в .drop-zone вместе с остальными */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FEF4EB;
+    border: 2px dashed #BC854D;
+    border-radius: 16px;
+    font-size: 48px;
+    color: #8B8B8B;
+    pointer-events: none; /* не взаимодействует с курсором */
+}
+
+/* style.css — ДОБАВЬТЕ В САМЫЙ КОНЕЦ ------------------------------------- */
+@media (max-width: 480px) {
+
+    /* Общие правки */
+    html, body {
+        overflow: auto;
+    }
+    /* разрешаем прокрутку */
+    .page-container {
+        padding: 5px;
+    }
+
+    .orange-block {
+        width: 96%;
+        height: auto;
+        padding: 6px;
+    }
+
+    /* Игра: колонки теперь одна под другой */
+    .game {
+        flex-direction: column;
+        gap: 11px;
+    }
+
+    .left-side,
+    .right-side {
+        width: 100%;
+        gap: 10px;
+    }
+
+    /* Панель прогресса */
+    .progress-panel {
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        padding: 10px 14px;
+    }
+
+        .progress-panel .progress-label {
+            font-size: 14px;
+        }
+
+        .progress-track {
+            order: 3;
+            flex-basis: 100%;
+        }
+
+        .progress-panel .progress-count {
+            font-size: 13px;
+        }
+
+    /* Блок «Задание» */
+    .task-block {
+        min-height: auto;
+        padding: 16px 20px;
+    }
+
+    /* Блок «Выбранные предметы» */
+    .picked-values {
+        padding: 9px 20px;
+        gap: 16px;
+    }
+
+    .drop-zone {
+        min-height: 160px;
+        padding: 8px;
+    }
+
+    /* Карточки в корзине более узкие, чтобы влазили по две */
+    .drop-zone {
+        justify-content: flex-start;
+        gap: 8px;
+    }
+
+        .drop-zone .choose-block,
+        .missing-block {
+            width: 45%;
+            height: 81px;
+        }
+
+            .drop-zone .choose-block img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .drop-zone .choose-block p {
+                font-size: 11px;
+                line-height: 13px;
+            }
+
+    /* Кнопки «Сбросить / Отдать» */
+    .button-container {
+        gap: 12px;
+    }
+
+        .button-container div {
+            font-size: 14px;
+            height: 44px;
+        }
+
+    /* Правый блок выбора предметов */
+    .choose-area {
+        padding: 5px;
+        gap: 6px;
+    }
+
+        .choose-area h5 {
+            margin-bottom: 4px;
+            font-size: 18px;
+        }
+
+    .choose-area {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .choose-block {
+        height: 80px;
+        gap: 12px;
+    }
+
+        .choose-block img {
+            width: 52px;
+            height: 52px;
+        }
+
+        .choose-block p {
+            font-size: 11px;
+        }
+
+    /* Модальные окна выбора значения */
+    .modal-values .panel {
+        width: 95vw;
+        max-width: 95vw;
+    }
+
+        .modal-values .panel > div {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+    .modal-values .choose-block {
+        height: 110px;
+    }
+
+    /* Текст на стартовом/успешном модальном окне слегка поменьше */
+    .panel-text {
+        font-size: 13px;
+    }
+    .panel {
+        max-width: 93%;
+    }
+}
+
+
+html,
+body {
+    /* раньше overflow был отключён */
+    overflow: auto !important; /* вертикальная + горизонтальная прокрутка */
+    min-height: 100%; /* чтобы <body> рос по контенту */
+}
+
+/* 2. Делаем основной контейнер «резиновым» —
+      он растягивается на всю ширину родительского iframe,
+      но не больше 1600 px, как в макете */
+.orange-block {
+    width: 100% !important; /* занимать всю ширину iframe */
+    max-width: 1600px; /* верхний предел, как у вас */
+    height: auto; /* убираем фиксированную высоту */
+    max-height: 100vh; /* но не больше высоты окна */
+    overflow: auto; /* если всё-таки не влезло — скролл внутри блока */
+    margin: 0 auto; /* аккуратно центрируем,
+                                       если экран шире 1600 px */
+}
+
+/* 3. Чтобы интерактив не «уезжал» за границу экрана по горизонтали
+      на узких устройствах (например, в iPad-версии плеера Moodle) */
+.page-container {
+    flex-wrap: wrap; /* ломаемся на несколько строк при нехватке ширины */
+}
+
+/* 4. Перестраховка.  Если случайно попадётся другой фиксированный
+      блок, скрытый за краями, разрешим внутренний скролл. */
+* {
+    max-width: 100%;
+    word-break: break-word;
+}

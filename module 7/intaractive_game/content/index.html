@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <!-- head.html -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Кто хочет стать миллионером</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script src="../js/scorm_api.js"></script>
+</head>
+<body>
+    <div class="page-container">
+        <div class="modal-mask" id="startModal">
+
+            <div class="panel active">
+                <p class="panel-text">
+                    Проверим, насколько внимательно вы изучили материал! Вам предстоит правильно собрать необходимые приборы к заказу. Готовы? Поехали!
+                </p>
+                <button class="next-btn" id="startBtn">Старт!</button>
+            </div>
+        </div>
+        <div class="orange-block">
+            <div class="progress-panel">
+                <span class="progress-label">Задание <span id="progressCurrent">1</span> из <span id="progressTotal">8</span></span>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <span class="progress-count">Пройдено: <span id="progressDone">0</span> из <span id="progressTotal2">8</span></span>
+            </div>
+            <div class="game disabled">
+                <div class="left-side">
+                    <div class="task-block">
+                        <h5>Задание:</h5>
+                        <p></p>
+                        <p class="hint-message"></p>
+                    </div>
+                    <div class="picked-values">
+                        <h5>Выбранные предметы</h5>
+                        <div class="drop-zone">
+                            <p class="placeholder" style="color: #403636;">выберите предметы из категории справа</p>
+                        </div>
+                    </div>
+                    <div class="button-container">
+                        <a><div>Сбросить заказ</div></a>
+                        <a><div>Отдать заказ</div></a>
+                    </div>
+                </div>
+                <div class="right-side">
+                    <div class="choose-area">
+                        <h5>Выберите предметы</h5>
+                        <div class="choose-block" data-modal="first-modal">
+                            <img src="images/box_cremanka.png" alt="image" />
+                            <p>Упаковка</p>
+                        </div>
+                        <div class="choose-block" data-modal="second-modal">
+                            <img src="images/bag_large.png" alt="image" />
+                            <p>Пакеты</p>
+                        </div>
+                        <div class="choose-block" data-modal="third-modal">
+                            <img src="images/cup_togo_large_440.png" alt="image" />
+                            <p>Стаканы с собой</p>
+                        </div>
+                        <div class="choose-block" data-modal="fourth-modal">
+                            <img src="images/glass_large.png" alt="image" />
+                            <p>Кружки/стаканы</p>
+                        </div>
+                        <div class="choose-block" data-modal="fifth-modal">
+                            <img src="images/cutlery_icon.png" alt="image" />
+                            <p>Столовые приборы</p>
+                        </div>
+                        <div class="choose-block" data-modal="sixth-modal">
+                            <img src="images/plate_deep_porridge.png" alt="image" />
+                            <p>Тарелки</p>
+                        </div>
+                        <div class="choose-block" data-modal="seventh-modal">
+                            <img src="images/tray.png" alt="image" />
+                            <p>Дополнительные предметы сервировки</p>
+                        </div>
+                        <div class="choose-block" data-modal="eight-modal">
+                            <img src="images/cup_holder_4.png" alt="image" />
+                            <p>Подставки для стаканов</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-values" id="first-modal">
+
+            <div class="panel active value">
+                <h5>Упаковка</h5>
+                <div>
+                    <div class="choose-block" data-item="box-cremanka">
+                        <img src="images/box_cremanka.png" alt="image" />
+                        <p>Упаковка-креманка</p>
+                    </div>
+                    <div class="choose-block" data-item="box-desert">
+                        <img src="images/box_dessert.png" alt="image" />
+                        <p>Упаковка-десертная</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-values" id="second-modal">
+
+            <div class="panel active value">
+                <h5>Пакеты</h5>
+                <div>
+                    <div class="choose-block" data-item="package-big">
+                        <img src="images/bag_large.png" alt="image" />
+                        <p>Пакет большой</p>
+                    </div>
+                    <div class="choose-block" data-item="package-med">
+                        <img src="images/bag_medium.png" alt="image" />
+                        <p>Пакет средний</p>
+                    </div>
+                    <div class="choose-block" data-item="package-sm">
+                        <img src="images/bag_small.png" alt="image" />
+                        <p>Пакет маленький</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-values" id="third-modal">
+
+            <div class="panel active value">
+                <h5>Стаканы с собой</h5>
+                <div>
+                    <div class="choose-block" data-item="stakan-big">
+                        <img src="images/cup_togo_large_440.png" alt="image" />
+                        <p>Стакан большой</p>
+                    </div>
+                    <div class="choose-block" data-item="stakan-med">
+                        <img src="images/cup_togo_medium_360.png" alt="image" />
+                        <p>Стакан средний</p>
+                    </div>
+                    <div class="choose-block" data-item="stakan-sm">
+                        <img src="images/cup_togo_small_220.png" alt="image" />
+                        <p>Стакан маленький</p>
+                    </div>
+                    <div class="choose-block" data-item="stakan-ice-big">
+                        <img src="images/cup_togo_cold_large.png" alt="image" />
+                        <p>Стакан большой холодный</p>
+                    </div>
+                    <div class="choose-block" data-item="stakan-ice-small">
+                        <img src="images/cup_togo_cold_small.png" alt="image" />
+                        <p>Стакан маленький холодный</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-values" id="fourth-modal">
+
+            <div class="panel active value">
+                <h5>Кружки/стаканы</h5>
+                <div>
+                    <div class="choose-block" data-item="teapot">
+                        <img src="images/teapot.png" alt="image" />
+                        <p>Чайник</p>
+                    </div>
+                    <div class="choose-block" data-item="milk">
+                        <img src="images/milk_jug.png" alt="image" />
+                        <p>Молочник</p>
+                    </div>
+                    <div class="choose-block" data-item="mag-big">
+                        <img src="images/mug_large_440.png" alt="image" />
+                        <p>Кружка большая</p>
+                    </div>
+                    <div class="choose-block" data-item="mag-med">
+                        <img src="images/mug_medium_360.png" alt="image" />
+                        <p>Кружка средняя</p>
+                    </div>
+                    <div class="choose-block" data-item="mag-sm">
+                        <img src="images/mug_small_220.png" alt="image" />
+                        <p>Кружка маленькая</p>
+                    </div>
+                    <div class="choose-block" data-item="mag-tea-dish">
+                        <img src="images/mug_tea_with_saucer.png" alt="image" />
+                        <p>Кружка чайная с блюдцем</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-values" id="fifth-modal">
+
+            <div class="panel active value">
+                <h5>Столовые приборы</h5>
+                <div>
+                    <div class="choose-block" data-item="fork-desert">
+                        <img src="images/fork_dessert.png" alt="image" />
+                        <p>Вилка десертная</p>
+                    </div>
+
+                    <div class="choose-block" data-item="knife">
+                        <img src="images/knife.png" alt="image" />
+                        <p>Нож</p>
+                    </div>
+                    <div class="choose-block" data-item="spoon-dinnary">
+                        <img src="images/spoon_table.png" alt="image" />
+                        <p>Столовая ложка</p>
+                    </div>
+                    <div class="choose-block" data-item="spoon-tea">
+                        <img src="images/spoon_tea.png" alt="image" />
+                        <p>Чайная ложка</p>
+                    </div>
+                    <div class="choose-block" data-item="spoon-espresso">
+                        <img src="images/spoon_espresso.png" alt="image" />
+                        <p>Ложка эспрессо</p>
+                    </div>
+                    <div class="choose-block" data-item="spoon-cocktail">
+                        <img src="images/spoon_cocktail.png" alt="image" />
+                        <p>Коктейльная ложка</p>
+                    </div>
+                    <div class="choose-block" data-item="fork-soboy">
+                        <img src="images/fork_togo.png" alt="image" />
+                        <p>Вилка с собой</p>
+                    </div>
+                    <div class="choose-block" data-item="spoon-soboy">
+                        <img src="images/spoon_togo.png" alt="image" />
+                        <p>Ложка с собой</p>
+                    </div>
+                    <div class="choose-block" data-item="knife-soboy">
+                        <img src="images/knife_togo.png" alt="image" />
+                        <p>Нож с собой</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-values" id="sixth-modal">
+
+            <div class="panel active value">
+                <h5>Тарелки</h5>
+                <div>
+                    <div class="choose-block" data-item="dish-cremanka">
+                        <img src="images/plate_cremanka.png" />
+                        <p>Тарелка креманка</p>
+                    </div>
+
+                    <div class="choose-block" data-item="dish-deep">
+                        <img src="images/plate_deep_porridge.png" alt="image" />
+                        <p>Тарелка для каши глубокая</p>
+                    </div>
+                    <div class="choose-block" data-item="dish-desert">
+                        <img src="images/plate_dessert.png" alt="image" />
+                        <p>Тарелка десертная</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-values" id="seventh-modal">
+
+            <div class="panel active value">
+                <h5>Дополнительные предметы сервировки</h5>
+                <div>
+                    <div class="choose-block" data-item="podnos">
+                        <img src="images/tray.png" />
+                        <p>Поднос</p>
+                    </div>
+                    <div class="choose-block" data-item="salfetka">
+                        <img src="images/napkin_1.png" />
+                        <p>1 Салфетка</p>
+                    </div>
+                    <div class="choose-block" data-item="2salfetka">
+                        <img src="images/napkin_2.png" />
+                        <p>2 Салфетки</p>
+                    </div>
+                    <div class="choose-block" data-item="3salfetka">
+                        <img src="images/napkin_3.png" />
+                        <p>3 Салфетки</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-values" id="eight-modal">
+
+            <div class="panel active value">
+                <h5>Подставки для стаканов</h5>
+                <div>
+                    <div class="choose-block" data-item="2-podstavka">
+                        <img src="images/cup_holder_2.png" />
+                        <p>2-х подставка</p>
+                    </div>
+                    <div class="choose-block" data-item="4-podstavka">
+                        <img src="images/cup_holder_4.png" />
+                        <p>4-х подставка</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal-mask hidden" id="successModal">
+            <div class="panel active">
+                <p class="panel-text"
+                   style="max-width:320px">
+                    Ты успешно справился с заказом!<br>
+                    Скорее, переходи к следующему.
+                </p>
+
+                <button class="next-btn" id="continueBtn">Продолжить</button>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>

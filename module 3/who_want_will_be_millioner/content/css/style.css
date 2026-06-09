@@ -1,0 +1,345 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@600&display=swap');
+
+body {
+    margin: 0;
+    background: white; /* например, светло-серый фон за игровым полем */
+    font-family: 'Montserrat Alternates', sans-serif;
+    overflow: hidden;
+}
+
+.game-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background: #FEF4EB; /* фон игрового поля (можно использовать нужный вам оранжевый оттенок) */
+    padding: 20px;
+    border-radius: 16px;
+    box-sizing: border-box;
+}
+
+.screen {
+    display: none;
+    padding: 10px;
+}
+
+    .screen.active {
+        display: block;
+    }
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 32px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px;
+}
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+/* Кнопка "Завершить" */
+#finish-btn {
+    background-color: #BC854D;
+}
+/* Кнопка "Начать заново" */
+#retry-btn {
+    background-color: #BC854D;
+}
+
+#close-popup-btn {
+    background-color: #BC854D;
+    width: 152px;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Экран прогресса */
+#progress-screen {
+    text-align: center;
+}
+
+#progress-list {
+    display: inline-block; /* Делаем блок для центрирования */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+    #progress-list li {
+        font-size: 24px;
+        padding: 10px 20px; /* Отступы внутри */
+        border: 2px solid transparent;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        background: none; /* Обычный пункт без заливки */
+        color: #000; /* Черный текст у обычных пунктов */
+    }
+
+        #progress-list li.disabled {
+            color: #666;
+            cursor: not-allowed;
+        }
+        /* Активный пункт: делаем контраст */
+        #progress-list li.active {
+            position: relative;
+            background-color: #FBAA59;
+            color: #fff;
+            border-radius: 6px;
+            border: none;
+            padding: 12px 50px;
+            margin: 10px 0;
+        }
+
+/* «Ленточка» с вопросом */
+.arrow-box {
+    display: inline-block;
+    position: relative;
+    background-color: #D2B38A;
+    padding: 15px 40px;
+    color: #000;
+    font-weight: 500;
+    border-radius: 6px;
+    text-align: center;
+    /* Увеличенный отступ сверху, чтобы «дышала» картинка */
+    margin-top: 30px;
+    margin-bottom: 30px; /* отступ вниз до первого ответа */
+}
+
+    .arrow-box::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        border-top: 15px solid transparent;
+        border-bottom: 15px solid transparent;
+        border-right: 15px solid #D2B38A;
+    }
+
+    .arrow-box::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        border-top: 15px solid transparent;
+        border-bottom: 15px solid transparent;
+        border-left: 15px solid #D2B38A;
+    }
+
+/* Контейнер для ответов */
+#answers-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* отступы между ответами чуть меньше (5-10px) */
+    gap: 10px;
+}
+
+    /* Сами кнопки-ответы — делаем пошире и одинаковый размер */
+    #answers-container button {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 500px;
+        max-width: 90%;
+        margin: 0; /* убираем большие внешние отступы */
+        background-color: white;
+        color: black;
+        border: 1px solid #BC854D;
+        text-align: left;
+        padding: 12px;
+        height: 85px;
+    }
+.answer-text {
+    flex: 1;
+}
+
+/* Отметка правильного и неправильного ответа */
+.highlight-correct {
+    background-color: #689948 !important;
+    color: #fff !important;
+}
+
+.highlight-wrong {
+    background-color: #FC7253 !important;
+    color: #fff !important;
+}
+
+/* Выносим «букву ответа» в отдельный класс */
+.answer-label {
+    color: #FC7253; /* оранжевый цвет буквы */
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+/* Экраны ошибки и успеха — на всю высоту, без фона */
+#error-screen,
+#success-screen {
+    color: #fff;
+    background-color: transparent;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.error-man-wrapper {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.error-man {
+    max-width: 60%;
+    max-height: 60%;
+    height: auto;
+}
+
+.success-man-wrapper {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.success-man {
+    max-width: 60%;
+    max-height: 60%;
+    height: auto;
+}
+
+/* Поп-ап (overlay + контент) */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background-color: #FEF4EB;
+    border: 2px solid #BC854D;
+    padding: 20px;
+    color: black;
+    border-radius: 10px;
+    max-width: 80%;
+    text-align: center;
+}
+
+    .popup-content p {
+        margin-bottom: 20px;
+    }
+
+#error-popup.popup-overlay,
+#success-popup.popup-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Чтобы картинку «челика» сдвинуть левее: меняем justify-content */
+.question-content {
+    gap: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.left-column {
+    width: 60%;
+    text-align: left;
+}
+
+.right-column {
+    width: 40%;
+    display: flex;
+    justify-content: flex-start; /* вместо center */
+    align-items: center;
+}
+
+    .right-column img {
+        max-width: 100%;
+        height: auto;
+        max-height: 600px;
+    }
+
+/* Адаптивная часть */
+@media (max-width: 768px) {
+    body{
+        overflow: auto;
+    }
+    .question-content {
+        gap: 0px;
+        flex-direction: column;
+        align-items: center;
+        max-width: 100%;
+    }
+
+    .left-column,
+    .right-column {
+        gap: 20px;
+        width: 100%;
+    }
+
+    .right-column{
+
+	justify-content: center;
+}
+
+    #answers-container {
+        margin-top: 20px;
+        gap: 5px;
+    }
+
+    .arrow-box {
+        padding: 1px 40px;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+
+    .right-column img {
+        max-height: 200px;
+    }
+
+    .error-man,
+    .success-man {
+        max-width: 100%;
+        max-height: 100%;
+        height: auto;
+    }
+
+    #answers-container button {
+        width: 90%;
+        max-width: none;
+        margin: 0 auto 10px;
+        box-sizing: border-box;
+        /* Задаём одинаковую высоту для всех ответов */
+        height: auto;
+        /* Если текста много – обрезаем и ставим «…» */
+    }
+
+    .screen {
+        padding: 5px;
+    }
+}
