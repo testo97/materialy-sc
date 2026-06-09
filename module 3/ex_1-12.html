@@ -1,0 +1,225 @@
+<div id="page-1" class="content-container">
+    <h2></h2>
+    <div id="avatar-text" style="display: flex; align-items: center; margin-bottom: 20px; max-width: 100%; margin-left: 0;">
+        <img src="https://sc-learn.ru/draftfile.php/29/user/draft/226759707/%D0%9D%D0%B0%D1%81%D1%82%D0%B0%D0%B2%D0%BD%D0%B8%D0%BA%20%D0%BC%D0%B8%D0%BD%D0%B8%202.png" alt="Avatar" style="border-radius: 50%; object-fit: cover; width: 100%; max-width: 60px; height: 60px; margin-right: 15px;">
+        <div style="background-color: #FFF4EC; border-radius: 15px; padding: 15px; width: 100%;">
+            <p style="margin: 0; text-align: left; width: 100%;">
+                <b id="docs-internal-guid-77b5e886-7fff-4d20-652a-c1e41a15dc85">Итак, ты добрался до третьего дня марафона!</b>
+            </p>
+            <p style="margin: 0; text-align: left; width: 100%;"><b><br></b></p>
+            <p style="margin: 0; text-align: left; width: 100%;">
+                Твоя цель сегодня - выполнить все задания третьего модуля.<br><br>
+                Если ты любишь находиться на кухне или готовить что-то необычное, тебе точно понравится этот день марафона.
+            </p>
+        </div>
+    </div>
+
+    <p>Вот, что тебе предстоит узнать:</p>
+    <ul style="list-style-type: none; padding-left: 0; margin: 0;">
+        <li style="margin-bottom: 10px; display: flex; align-items: center;">
+            <svg width="10" height="10" style="margin-right: 10px; min-width: 10px;">
+                <circle cx="5" cy="5" r="5" fill="orange"></circle>
+            </svg>
+            <span style="color: black;">меню кофейни:&nbsp;какие блюда и напитки у нас есть?</span>
+        </li>
+        <li style="margin-bottom: 10px; display: flex; align-items: center;">
+            <svg width="10" height="10" style="margin-right: 10px; min-width: 10px;">
+                <circle cx="5" cy="5" r="5" fill="orange"></circle>
+            </svg>
+            <span style="color: black;">как и для чего делать заготовки для блюд</span>
+        </li>
+    </ul>
+
+    <p>
+        В общем, полное погружение в тему еды, чтобы радовать гостей, а также удивлять своих домашних новыми рецептами на кухне! Поехали!
+    </p>
+
+    <div class="button-container" style="margin-top: 20px;">
+        <button onclick="nextPage()" style="background-color: #FFD1B3; color: black; padding: 15px 30px; border: none; border-radius: 10px; cursor: pointer; float: right;">Далее</button>
+    </div>
+</div>
+
+<div id="page-2" class="content-container" style="display: none;">
+    <div id="avatar-text" style="display: flex; align-items: center; margin-bottom: 20px; max-width: 100%; margin-left: 0;">
+        <img src="https://sc-learn.ru/draftfile.php/29/user/draft/226759707/%D0%9D%D0%B0%D1%81%D1%82%D0%B0%D0%B2%D0%BD%D0%B8%D0%BA%20%D0%BC%D0%B8%D0%BD%D0%B8%202.png" alt="Avatar" style="border-radius: 50%; object-fit: cover; width: 100%; max-width: 60px; height: 60px; margin-right: 15px;">
+        <div style="background-color: #FFF4EC; border-radius: 15px; padding: 15px; width: 100%;">
+            <p style="margin: 0; text-align: left; width: 100%;">
+                Для начала познакомимся с меню нашей кофейни.
+            </p>
+        </div>
+    </div>
+
+    <div style="display: flex; align-items: center; margin: 20px 0;">
+        <img src="https://sc-learn.ru/draftfile.php/29/user/draft/226759707/6e3cbdbf.svg" alt="Иконка" style="width: 60px; height: 60px; margin-right: 15px;">
+        <div style="border: 2px solid orange; border-radius: 15px; padding: 15px; flex: 1;">
+            <p><strong>Почему меню — это важно?</strong></p>
+            <p>На данном этапе мы не просим тебя выучить наизусть наше меню. Пока ты не начал общаться с гостем, такой необходимости нет. Пока просто познакомься с разнообразием позиций, чтобы понимать, для каких блюд мы будем учиться делать заготовки.</p>
+        </div>
+    </div>
+
+    <p style="margin: 0; text-align: left; width: 100%;">
+        Перед тобой находится интерактивное меню, ты можешь его исследовать! Для этого кликай по разделам меню! <br><br>
+    </p>
+
+    <div class="menu" style="max-width: 320px; padding: 20px; border: 1px solid #d1d1d1; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin: 50px auto; color: #333; border: 2px solid #d1d1d1;">
+        <h1 style="color: #8b704e; text-align: center;">Меню</h1>
+        <div class="category" style="font-weight: bold; cursor: pointer; padding: 12px; background: #8b704e; margin: 8px 0; border-radius: 6px; text-align: center; color: white; transition: background 0.3s ease;">
+            Еда
+        </div>
+        <div class="subcategory" style="cursor: pointer; padding: 10px; margin-left: 20px; background: #f8f8f8; border: 1px solid #8b704e; border-radius: 6px; margin-bottom: 8px; transition: background 0.3s ease;" onmouseover="this.style.background='#e5702a'; this.style.color='white'" onmouseout="this.style.background='#f8f8f8'; this.style.color='#333'" onclick="openModal(0)">Десерты
+        </div>
+        <div class="subcategory" style="cursor: pointer; padding: 10px; margin-left: 20px; background: #f8f8f8; border: 1px solid #8b704e; border-radius: 6px; margin-bottom: 8px; transition: background 0.3s ease;" onmouseover="this.style.background='#e5702a'; this.style.color='white'" onmouseout="this.style.background='#f8f8f8'; this.style.color='#333'" onclick="openModal(1)">Сытное
+        </div>
+
+        <div class="category" style="font-weight: bold; cursor: pointer; padding: 12px; background: #8b704e; margin: 8px 0; border-radius: 6px; text-align: center; color: white; transition: background 0.3s ease;">
+            Напитки
+        </div>
+        <div class="subcategory" style="cursor: pointer; padding: 10px; margin-left: 20px; background: #f8f8f8; border: 1px solid #8b704e; border-radius: 6px; margin-bottom: 8px; transition: background 0.3s ease;" onmouseover="this.style.background='#e5702a'; this.style.color='white'" onmouseout="this.style.background='#f8f8f8'; this.style.color='#333'" onclick="openModal(2)">Кофе
+        </div>
+        <div class="subcategory" style="cursor: pointer; padding: 10px; margin-left: 20px; background: #f8f8f8; border: 1px solid #8b704e; border-radius: 6px; margin-bottom: 8px; transition: background 0.3s ease;" onmouseover="this.style.background='#e5702a'; this.style.color='white'" onmouseout="this.style.background='#f8f8f8'; this.style.color='#333'" onclick="openModal(3)">Бутылированные напитки
+        </div>
+        <div class="subcategory" style="cursor: pointer; padding: 10px; margin-left: 20px; background: #f8f8f8; border: 1px solid #8b704e; border-radius: 6px; margin-bottom: 8px; transition: background 0.3s ease;" onmouseover="this.style.background='#e5702a'; this.style.color='white'" onmouseout="this.style.background='#f8f8f8'; this.style.color='#333'" onclick="openModal(4)">Другие
+        </div>
+    </div>
+
+    <!-- Модальное окно с возможностью прокрутки -->
+    <div id="modal" class="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7);">
+        <div class="modal-content" id="modalContent" style="background: #fff; padding: 20px; max-width: 450px; width: 90%; margin: auto; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; border-radius: 8px; color: #333; max-height:80vh; overflow-y:auto;">
+            <!-- Крестик с увеличенной областью нажатия и анимацией -->
+            <span class="close" style="position: absolute; top: 10px; right: 20px; cursor: pointer; font-size: 48px; color: #e67e00; padding: 10px; transition: transform 0.2s ease, color 0.2s ease;" onclick="closeModal()" onmouseover="this.style.transform='scale(1.2)'; this.style.color='#d36f00'" onmouseout="this.style.transform='scale(1)'; this.style.color='#e67e00'">×</span>
+
+            <h2 id="modal-title" style="font-size: 24px; color: #333;"></h2>
+            <img id="modal-image" src="" alt="Изображение" style="display: none; width: 100%; height: auto; margin-bottom: 15px; border-radius: 6px;">
+            <ul id="modal-description" style="text-align: left; padding: 0; list-style-type: none;"></ul>
+            <button class="ok-button" onclick="closeModal()" style="margin-top: 20px; padding: 10px 20px; background-color: #e67e00; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; transition: background 0.3s ease;" onmouseover="this.style.backgroundColor='#d36f00'" onmouseout="this.style.backgroundColor='#e67e00'">Окей</button>
+        </div>
+    </div>
+
+    <script>
+        // Описания пунктов меню
+        const menuItems = [{
+                title: "Десерты",
+                description: [
+                    "Торты:  медовик, классический чизкейк, брусничный пирог, яблочно-карамельный, морковный торт",
+                    "Пирожные: малиновый и лимонный тарты, макаруны и пончики",
+                    "Конфеты ручной работы",
+                    "Печенье шоколадное и овсяное",
+                    "Круассаны сливочные и шоколадные",
+                    "Шоколадные медали «Simple Coffee»",
+                    "Шоколадные батончики и орешки",
+                    "Мороженное в рожке: ванильное, шоколадное или клубничное"
+                ],
+                image: "meals.jpg"
+            },
+            {
+                title: "Сытное",
+                description: [
+                    "Несколько видов рапов – «Рап Цезарь», «Рап с Лососем», «Рап Овощной», «Рап Терияки» и «Рап с Омлетом»",
+                    "Сэндвичи «Ветчина и сыр», «с лососем», «с курицей и беконом», «с бужениной»",
+                    "Круассаны с лососем или ветчиной",
+                    "Сырники",
+                    "Каша рисовая и овсяная (на завтрак, до 12:00)",
+                ],
+                image: "desserts.jpg"
+            },
+            {
+                title: "Кофе",
+                description: [
+                    "Флэт уайт, капучино, латте",
+                    "Двойной эспрессо, американо и фильтр-кофе",
+                    "Аффогато – двойной эспрессо с шариком мороженого на выбор",
+                    "Глясе - двойной эспрессо с добавлением шарика ванильного мороженого",
+                    "Эспрессо Актив - двойной эспрессо с медом и соком лимона",
+                    "Эспрессо Кон Панна - двойной эспрессо с взбитыми сливками",
+                    "Мокачино – капучино с шоколадной крошкой",
+                    "Миндальный латте, халва-латте, медовый латте",
+                    "Раф и кофе по-венски",
+                    "Айс-латте, бамбл, фраппучино"
+                ],
+                image: "cofee.jpg"
+            },
+            {
+                title: "Бутылированные",
+                description: [
+                    "Питьевая вода",
+                    "Газированные напитки",
+                    "Соки"
+                ],
+                image: "bottled.jpg"
+            },
+            {
+                title: "Другие",
+                description: [
+                    "Молочные коктейли: ванильный, клубничный, шоколадный или банановый",
+                    "Смузи: облепиховый, клубника-банан или черника-кокос",
+                    "Чаи листовые: черный или зеленый",
+                    "Авторские чаи: «Мятная клюква», «Чай с имбирем», «Облепиховый»",
+                    "Матча-меню: матча-латте, айс-матча или матча-аффогато"
+                ],
+                image: "other-drinks.jpg"
+            }
+        ];
+
+        function openModal(index) {
+            document.getElementById("modal-title").innerText = menuItems[index].title;
+            document.getElementById("modal-image").src = menuItems[index].image;
+            document.getElementById("modal-image").style.display = "block";
+
+            let descriptionList = document.getElementById("modal-description");
+            descriptionList.innerHTML = "";
+            menuItems[index].description.forEach(item => {
+                let li = document.createElement("li");
+                li.innerText = item;
+                li.style.padding = "8px";
+                li.style.borderBottom = "1px solid #ddd";
+                li.style.fontSize = "16px";
+                descriptionList.appendChild(li);
+            });
+            document.getElementById("modal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+    </script>
+
+    <div class="button-container" style="display: flex; justify-content: space-between; margin-top: 20px;">
+        <button onclick="prevPage()" style="background-color: #FFD1B3; color: black; padding: 15px 30px; border: none; border-radius: 10px; cursor: pointer;">Назад</button>
+        <button onclick="window.location.href='https://sc-learn.ru/mod/page/view.php?id=319';" style="background-color: #32CD32; color: white; padding: 15px 30px; border: none; border-radius: 10px; cursor: pointer;">
+            К следующему заданию!
+        </button>
+    </div>
+</div>
+
+<script>
+    let currentPage = 1;
+
+    function showPage(pageNumber) {
+        // Hide all pages
+        const pages = document.querySelectorAll('.content-container');
+        pages.forEach(page => page.style.display = 'none');
+
+        // Show the desired page
+        document.getElementById(`page-${pageNumber}`).style.display = 'block';
+
+        // Scroll to top
+        window.scrollTo(0, 0);
+    }
+
+    function nextPage() {
+        if (currentPage < 2) {
+            currentPage++;
+            showPage(currentPage);
+        }
+    }
+
+    function prevPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            showPage(currentPage);
+        }
+    }
+
+    // Initially show the first page
+    showPage(currentPage);
+</script>
