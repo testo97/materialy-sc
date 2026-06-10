@@ -1,0 +1,569 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оглавление курсов</title>
+    <style>
+        .grayscale-icon {
+            filter: grayscale(100%) brightness(0.7);
+        }
+        .module-icon {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+        
+        /* Стили для мобильных устройств */
+        @media (max-width: 768px) {
+            .module {
+                width: calc(50% - 20px) !important;
+            }
+            .connector {
+                right: -24px !important;
+                width: 20px !important;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            body {
+                padding: 10px !important;
+            }
+            .connector {
+                right: -13px !important;
+                width: 13px !important;
+            }
+            
+            /* Уменьшаем размеры в 2 раза */
+            .module {
+                padding: 3px 2px !important;
+                min-width: 100px !important;
+                border-width: 2px !important;
+                margin: 0 5px !important;
+                width: calc(50% - 10px) !important;
+            }
+            
+            .module-icon {
+                width: 20px !important;
+                height: 20px !important;
+                margin-bottom: 5px !important;
+            }
+            
+            .module div {
+                font-size: 0.8em !important;
+            }
+            
+            #prevBtn, #nextBtn {
+                width: 30px !important;
+                height: 30px !important;
+                font-size: 16px !important;
+                top: -35px !important;
+            }
+            
+            #prevBtn {
+                right: 45px !important;
+            }
+            
+            #currentCourseMarker {
+                padding: 5px 10px !important;
+                border-width: 2px !important;
+                font-size: 0.8em !important;
+            }
+            
+            #currentCourseMarker::before {
+                top: -19px !important;
+                height: 18px !important;
+                width: 2px !important;
+            }
+            
+            /* Прогресс-круг */
+            .progress-container {
+                width: 120px !important;
+                height: 120px !important;
+                margin-right: 10px !important;
+            }
+            
+            .progress-container svg {
+                width: 120px !important;
+                height: 120px !important;
+            }
+            
+            .progress-container div {
+                font-size: 24px !important;
+            }
+            
+            /* Логотип */
+            img[alt="Логотип"] {
+                max-height: 120px !important;
+                margin-left: 10px !important;
+            }
+            
+            /* Контейнер прогресса и логотипа */
+            .progress-logo-container {
+                flex-direction: column !important;
+                align-items: center !important;
+                margin-bottom: 20px !important;
+            }
+            
+            .progress-wrapper {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+        
+        /* Стили для неактивных кнопок */
+        #prevBtn:disabled, #nextBtn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            border-color: #cccccc !important;
+        }
+    </style>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 20px; max-width: 1200px; margin: 0 auto;">
+    <!-- Прогресс и логотип -->
+    <div class="progress-logo-container" style="display: flex; justify-content: center; align-items: center; margin-bottom: 40px; flex-wrap: wrap;">
+        <!-- Обертка для круга прогресса -->
+        <div class="progress-wrapper">
+            <!-- Круг прогресса -->
+            <div class="progress-container" style="position: relative; width: 212px; height: 212px;">
+                <svg width="212" height="212" viewBox="0 0 100 100" style="transform: rotate(-90deg);">
+                    <circle cx="50" cy="50" r="45" stroke="#e0e0e0" stroke-width="10" fill="none"/>
+                    <!-- Прогресс-бар будет обновляться через JS -->
+                    <circle id="progressCircle" cx="50" cy="50" r="45" stroke="#4CAF50" stroke-width="10" fill="none" 
+                            stroke-dasharray="0 282.743" stroke-linecap="round"/>
+                </svg>
+                <div id="progressPercent" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: bold; font-size: 32px;">
+                    0%
+                </div>
+            </div>
+        </div>
+        
+        <!-- Логотип -->
+        <img src="https://sc-learn.ru/moodle_media/timelines/images/logo.png" 
+             alt="Логотип" style="max-height: 212px; margin-left: 20px;">
+    </div>
+
+    <!-- Контейнер модулей -->
+    <div style="position: relative;">
+        <!-- Кнопки навигации -->
+        <button id="prevBtn" style="position: absolute; right: 60px; top: -45px; background-color: #FEF4EB; border: 2px solid #FFA500; border-radius: 8px;  width: 40px; height: 40px; cursor: pointer; font-size: 20px; display: flex; justify-content: center; align-items: center;">&lt;</button>
+        <button id="nextBtn" style="position: absolute; right: 0; top: -45px; background-color: #FEF4EB; border: 2px solid #FFA500; border-radius: 8px; width: 40px; height: 40px; cursor: pointer; font-size: 20px; display: flex; justify-content: center; align-items: center;">&gt;</button>
+        
+        <!-- Обертка для модулей -->
+        <div id="modulesWrapper" style="overflow: hidden; position: relative;">
+            <div id="modulesContainer" style="display: flex; transition: transform 0.5s ease; position: relative;">
+                <!-- Модули будут сгенерированы через JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Текущий курс (будет добавлен через JS) -->
+    <div id="currentCourse" style="margin-top: -3px; text-align: center;"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Функция для получения параметра из URL
+            function getUrlParameter(name) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(name);
+            }
+            
+            // Получаем текущий модуль из параметра URL
+            const currentModuleFromUrl = parseInt(getUrlParameter('current')) || 13; // po umolchaniyu Modul 7 (id 13)
+            
+            // Данные модулей с URL изображений для иконок
+            const modules = [
+                { id: 1, name: "Трудовой договор", desc: "Начало стажировки", icon: "https://sc-learn.ru/moodle_media/timelines/images/contract.png", current: false, completed: true },
+                { id: 2, name: "Модуль 1", desc: "Знакомство с Simple Coffee",icon: "https://sc-learn.ru/moodle_media/timelines/images/module1.png", current: false, completed: true },
+                { id: 3, name: "Модуль 2",desc: "Безопасность продовольствия", icon: "https://sc-learn.ru/moodle_media/timelines/images/module2.png", current: false, completed: false },
+                { id: 4, name: "Практика", icon: "https://sc-learn.ru/moodle_media/timelines/images/practice.png", desc: "Практическое занятие в кофейне",current: false, completed: false },
+                { id: 5, name: "Модуль 3",desc: "Заготовки", icon: "https://sc-learn.ru/moodle_media/timelines/images/module3.png", current: false, completed: false},
+                { id: 6, name: "Практика", icon: "https://sc-learn.ru/moodle_media/timelines/images/practice.png", desc: "Практическое занятие в кофейне",current: false, completed: false },
+                { id: 7, name: "Модуль 4",desc: "Приготовление блюд. Десертная витрина", icon: "https://sc-learn.ru/moodle_media/timelines/images/module4.png", current: false, completed: false},
+                { id: 8, name: "Практика", icon: "https://sc-learn.ru/moodle_media/timelines/images/practice.png", desc: "Практическое занятие в кофейне",current: false, completed: false },
+                { id: 9, name: "Модуль 5",desc: "Культура обслуживания", icon: "https://sc-learn.ru/moodle_media/timelines/images/module5.png", current: false, completed: false },
+                { id: 10, name: "Практика", icon: "https://sc-learn.ru/moodle_media/timelines/images/practice.png", desc: "Практическое занятие в кофейне",current: false, completed: false },
+                { id: 11, name: "Модуль 6",desc: "Уборка кофейни", icon: "https://sc-learn.ru/moodle_media/timelines/images/module6.png", current: false, completed: false },
+                { id: 12, name: "Практика", icon: "https://sc-learn.ru/moodle_media/timelines/images/practice.png", desc: "Практическое занятие в кофейне",current: false, completed: false },
+                { id: 13, name: "Модуль 7",desc: "Работа с заказами", icon: "https://sc-learn.ru/moodle_media/timelines/images/module7.png", current: false, completed: false },
+                { id: 14, name: "Практика", icon: "https://sc-learn.ru/moodle_media/timelines/images/practice.png", desc: "Практическое занятие в кофейне",current: false, completed: false },
+                { id: 15, name: "Модуль 8",desc: "Кассовая дисциплина", icon: "https://sc-learn.ru/moodle_media/timelines/images/module8.png", current: false, completed: false },
+                { id: 16, name: "Практика", icon: "https://sc-learn.ru/moodle_media/timelines/images/practice.png", desc: "Практическое занятие в кофейне",current: false, completed: false },
+		{ id: 17, name: "Модуль 9", icon: "https://sc-learn.ru/moodle_media/timelines/images/module9.png", desc: "Приоритеты в работе бариста",current: false, completed: false },
+                { id: 18, name: "Итоговое тестирование", icon: "https://sc-learn.ru/moodle_media/timelines/images/finaltest.png", desc: "Проверка полученных знаний",current: false, completed: false },
+                { id: 19, name: "Полноценные рабочие смены", icon: "https://sc-learn.ru/moodle_media/timelines/images/workshifts.png", desc: "",current: false, completed: false },
+                { id: 20, name: "Обучение в треннинг-центре кофейному мастерству", icon: "https://sc-learn.ru/moodle_media/timelines/images/training.png", desc: "",current: false, completed: false },
+            ];
+
+            // Обновляем статусы модулей на основе параметра из URL
+            modules.forEach(module => {
+                if (module.id < currentModuleFromUrl) {
+                    module.completed = true;
+                    module.current = false;
+                } else if (module.id === currentModuleFromUrl) {
+                    module.completed = false;
+                    module.current = true;
+                } else {
+                    module.completed = false;
+                    module.current = false;
+                }
+            });
+
+            const modulesContainer = document.getElementById('modulesContainer');
+            const currentCourseDiv = document.getElementById('currentCourse');
+            const modulesWrapper = document.getElementById('modulesWrapper');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const progressCircle = document.getElementById('progressCircle');
+            const progressPercent = document.getElementById('progressPercent');
+            
+            let currentModuleIndex = modules.findIndex(m => m.current);
+            let currentPosition = 0;
+            let maxPosition = 0;
+            let modulesPerScreen = 4; // По умолчанию для десктопа
+            
+            // Функция для обновления прогресса
+            function updateProgress() {
+                const completedCount = modules.filter(m => m.completed).length;
+                const totalCount = modules.length;
+                const progress = Math.round((completedCount / totalCount) * 100);
+                
+                // Обновляем текст прогресса
+                progressPercent.textContent = `${progress}%`;
+                
+                // Обновляем круг прогресса
+                const circumference = 2 * Math.PI * 45;
+                const dashoffset = circumference - (progress / 100) * circumference;
+                progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+                progressCircle.style.strokeDashoffset = dashoffset;
+            }
+            
+            // Генерация модулей
+            modules.forEach((module, index) => {
+                const moduleDiv = document.createElement('div');
+                moduleDiv.className = 'module';
+                moduleDiv.style.position = 'relative';
+                moduleDiv.style.width = 'calc(25% - 20px)';
+                moduleDiv.style.margin = '0 10px';
+                moduleDiv.style.padding = '20px 10px';
+                moduleDiv.style.textAlign = 'center';
+                moduleDiv.style.borderRadius = '15px';
+                moduleDiv.style.backgroundColor = '#FEF4EB';
+                moduleDiv.style.minWidth = '200px';
+                moduleDiv.style.boxSizing = 'border-box';
+                moduleDiv.style.flexShrink = '0';
+                
+                // Определяем цвет границы в зависимости от статуса модуля
+                if (module.current) {
+                    moduleDiv.style.border = '4px solid #FFA500'; // Оранжевый для текущего
+                } else if (module.completed) {
+                    moduleDiv.style.border = '4px solid #689948'; // Зеленый для пройденных
+                } else {
+                    moduleDiv.style.border = '4px solid #717171'; // Серый для непройденных
+                }
+                
+                moduleDiv.style.position = 'relative';
+                moduleDiv.dataset.index = index;
+                
+                // Добавляем соединительные линии между модулями
+                if (index < modules.length - 1) {
+                    const connector = document.createElement('div');
+                    connector.className = 'connector';
+                    connector.style.position = 'absolute';
+                    connector.style.right = '-24px';
+                    connector.style.top = '50%';
+                    connector.style.width = '24px';
+                    connector.style.height = '4px';
+                    
+                    // Определяем цвет соединительной линии
+                    if (index === currentModuleIndex - 1) {
+                        connector.style.backgroundColor = '#FFA500'; // Оранжевый перед текущим
+                    } else if (index < currentModuleIndex) {
+                        connector.style.backgroundColor = '#689948'; // Зеленый для пройденных
+                    } else {
+                        connector.style.backgroundColor = '#717171'; // Серый для непройденных
+                    }
+                    
+                    connector.style.zIndex = '1';
+                    moduleDiv.appendChild(connector);
+                }
+                
+                // Иконка (теперь как изображение)
+                const iconImg = document.createElement('img');
+                iconImg.className = 'module-icon';
+                iconImg.src = module.icon;
+                iconImg.alt = `Иконка модуля ${module.id}`;
+                
+                // Добавляем класс grayscale-icon для неоткрытых модулей
+                if (!module.completed && !module.current) {
+                    iconImg.classList.add('grayscale-icon');
+                }
+                
+                moduleDiv.appendChild(iconImg);
+                
+                // Номер модуля
+                const moduleNumber = document.createElement('div');
+                moduleNumber.style.fontWeight = 'bold';
+                moduleNumber.style.marginBottom = '5px';
+                moduleNumber.textContent = `${module.name}`;
+                moduleDiv.appendChild(moduleNumber);
+                
+                // Название модуля
+                const moduleName = document.createElement('div');
+                moduleName.textContent = module.desc;
+                moduleDiv.appendChild(moduleName);
+                
+                modulesContainer.appendChild(moduleDiv);
+            });
+            
+            // Функция для проверки видимости элемента в viewport
+            function isElementInViewport(el) {
+                const rect = el.getBoundingClientRect();
+                return (
+                    rect.left >= 0 &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                );
+            }
+            
+            // Функция для обновления позиции маркера "ты тут!"
+            function updateCurrentCoursePosition() {
+                const currentModule = document.querySelector('.module[style*="border: 4px solid rgb(255, 165, 0)"]');
+                const currentMarker = document.getElementById('currentCourseMarker');
+                
+                if (currentModule && currentMarker) {
+                    // Проверяем, виден ли текущий модуль на экране
+                    if (isElementInViewport(currentModule)) {
+                        const moduleRect = currentModule.getBoundingClientRect();
+                        const wrapperRect = modulesWrapper.getBoundingClientRect();
+                        
+                        const centerPosition = moduleRect.left + moduleRect.width / 2 - wrapperRect.left;
+                        
+                        currentMarker.style.left = `${centerPosition - currentMarker.offsetWidth / 2}px`;
+                        currentMarker.style.position = 'absolute';
+                        currentMarker.style.display = 'inline-block';
+                    } else {
+                        currentMarker.style.display = 'none';
+                    }
+                } else if (currentMarker) {
+                    currentMarker.style.display = 'none';
+                }
+            }
+            
+            // Функция для расчета максимальной позиции прокрутки
+            function calculateMaxPosition() {
+                const isMobile = window.innerWidth <= 768;
+                const isSmallMobile = window.innerWidth <= 400;
+                modulesPerScreen = isSmallMobile ? 1 : (isMobile ? 2 : 4);
+                const moduleWidth = 100 / modulesPerScreen;
+                const totalWidth = (modules.length * moduleWidth) - 100;
+                maxPosition = Math.max(0, totalWidth);
+            }
+
+			// Функция для расчета максимальной позиции прокрутки
+			
+            
+            // Функция для обновления позиции модулей
+            function updateModulesPosition() {
+                // Ограничиваем currentPosition, чтобы не выходил за пределы
+                currentPosition = Math.max(0, Math.min(currentPosition, maxPosition));
+                
+                modulesContainer.style.transform = `translateX(-${currentPosition}%)`;
+                
+                // Обновляем состояние кнопок
+                prevBtn.disabled = currentPosition <= 0;
+                nextBtn.disabled = currentPosition >= maxPosition;
+                
+                // Обновляем позицию маркера после перемещения
+                setTimeout(updateCurrentCoursePosition, 500); // После завершения анимации
+            }
+            
+            // Обработчики кнопок навигации
+            prevBtn.addEventListener('click', () => {
+                const moduleWidth = 100 / modulesPerScreen;
+                currentPosition = Math.max(0, currentPosition - moduleWidth);
+                updateModulesPosition();
+            });
+            
+            // nextBtn.addEventListener('click', () => {
+            //     const moduleWidth = 100 / modulesPerScreen;
+            //     currentPosition = Math.min(maxPosition, currentPosition + moduleWidth);
+            //     updateModulesPosition();
+            // });
+
+			nextBtn.addEventListener('click', () => {
+			    const isSmallMobile = window.innerWidth <= 400;
+			    const moduleWidth = 100 / modulesPerScreen;
+			    
+			    // Для мобильных устройств ограничиваем максимальное количество кликов
+			    if (isSmallMobile) {
+			        const maxClicks = 9; // Максимум 9 кликов вправо
+			        const currentClick = Math.round(currentPosition / moduleWidth);
+			        
+			        if (currentClick >= maxClicks) {
+			            return; // Запрещаем дальнейшие клики
+			        }
+			    }
+			    
+			    currentPosition = Math.min(maxPosition, currentPosition + moduleWidth);
+			    updateModulesPosition();
+			});
+
+
+			// Добавьте этот код после обработчиков кнопок навигации
+
+// Функции для обработки свайпа
+let touchStartX = 0;
+let touchEndX = 0;
+let isSwiping = false;
+
+// Обработчик начала касания
+modulesWrapper.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].screenX;
+    isSwiping = true;
+}, { passive: true });
+
+// Обработчик движения касания
+modulesWrapper.addEventListener('touchmove', function(e) {
+    if (!isSwiping) return;
+    touchEndX = e.changedTouches[0].screenX;
+}, { passive: true });
+
+// Обработчик окончания касания
+modulesWrapper.addEventListener('touchend', function(e) {
+    if (!isSwiping) return;
+    isSwiping = false;
+    
+    const minSwipeDistance = 50; // Минимальная дистанция для определения свайпа
+    const swipeDistance = touchEndX - touchStartX;
+    
+    // Если дистанция слишком мала - не обрабатываем как свайп
+    if (Math.abs(swipeDistance) < minSwipeDistance) return;
+    
+    if (swipeDistance > 0) {
+        // Свайп вправо - листаем назад
+        const moduleWidth = 100 / modulesPerScreen;
+        currentPosition = Math.max(0, currentPosition - moduleWidth);
+        updateModulesPosition();
+    } else {
+        // Свайп влево - листаем вперед
+        const isSmallMobile = window.innerWidth <= 400;
+        const moduleWidth = 100 / modulesPerScreen;
+        
+        // Для мобильных устройств ограничиваем максимальное количество кликов
+        if (isSmallMobile) {
+            const maxClicks = 9; // Максимум 9 кликов вправо
+            const currentClick = Math.round(currentPosition / moduleWidth);
+            
+            if (currentClick >= maxClicks) {
+                return; // Запрещаем дальнейшие клики
+            }
+        }
+        
+        currentPosition = Math.min(maxPosition, currentPosition + moduleWidth);
+        updateModulesPosition();
+    }
+}, { passive: true });
+
+// Также добавим обработчик отмены касания
+modulesWrapper.addEventListener('touchcancel', function() {
+    isSwiping = false;
+}, { passive: true });
+            
+            // Адаптация под мобильные устройства
+            function handleResize() {
+                const isMobile = window.innerWidth <= 768;
+                const isSmallMobile = window.innerWidth <= 400;
+                
+                // Пересчитываем максимальную позицию
+                calculateMaxPosition();
+                
+                // Обновляем ширину модулей
+                document.querySelectorAll('.module').forEach(module => {
+                    if (isSmallMobile) {
+                        // Для очень маленьких экранов стили уже заданы в CSS
+                        return;
+                    }
+                    
+                    module.style.width = isMobile ? 'calc(50% - 20px)' : 'calc(25% - 20px)';
+                    
+                    // Обновляем позицию соединительных линий
+                    const connector = module.querySelector('.connector');
+                    if (connector) {
+                        connector.style.right = isMobile ? '-14px' : '-24px';
+                        connector.style.width = isMobile ? '14px' : '24px';
+                    }
+                });
+                
+                // Сбрасываем позицию при изменении размера
+                currentPosition = 0;
+                updateModulesPosition();
+                updateCurrentCoursePosition();
+            }
+            
+            // Создаем маркер текущего курса
+            function createCurrentCourseMarker() {
+                const currentText = document.createElement('div');
+                currentText.innerHTML = `<b>ты тут!</b>`;
+                currentText.style.display = 'none'; // Сначала скрываем
+                currentText.style.padding = '10px 20px';
+                currentText.style.border = '4px solid #FFA500';
+                currentText.style.borderRadius = '8px';
+                currentText.style.marginTop = '20px';
+                currentText.style.position = 'relative';
+                currentText.style.backgroundColor = '#FEF4EB';
+                currentText.id = 'currentCourseMarker';
+                
+                // Добавляем стили для соединительной линии
+                const style = document.createElement('style');
+                style.textContent = `
+                    #currentCourseMarker::before {
+                        content: '';
+                        position: absolute;
+                        top: -21px;
+                        left: 50%;
+                        width: 5px;
+                        height: 20px;
+                        background-color: #FFA500;
+                        transform: translateX(-50%);
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                currentCourseDiv.appendChild(currentText);
+            }
+            
+            // Инициализация
+            createCurrentCourseMarker();
+            calculateMaxPosition();
+            handleResize();
+            window.addEventListener('resize', handleResize);
+            
+            // Позиционируем контейнер так, чтобы текущий модуль был виден
+            function centerCurrentModule() {
+                const moduleWidth = 100 / modulesPerScreen;
+                
+                // Вычисляем позицию для центрации текущего модуля
+                currentPosition = Math.min(
+                    Math.max(0, currentModuleIndex * moduleWidth - (modulesPerScreen - 1) * moduleWidth / 2),
+                    maxPosition
+                );
+                
+                updateModulesPosition();
+                updateCurrentCoursePosition();
+            }
+            
+            //centerCurrentModule();
+            
+            // Обновляем прогресс
+            updateProgress();
+            
+            // Обновляем видимость маркера при прокрутке
+            modulesWrapper.addEventListener('scroll', updateCurrentCoursePosition);
+        });
+    </script>
+</body>
+</html>

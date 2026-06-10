@@ -1077,11 +1077,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Добавляем нужный класс эмоции
                 if (mood === "angry") {
-                    frame.style.backgroundImage = 'url("https://storage.yandexcloud.net/audio-test-sc/Property%201%3D%D0%A2%D0%B0%D0%BC%D0%B0%D1%80%D0%B0%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2%D0%BD%D0%B0%20%D1%81%20%D0%B2%D0%BD%D1%83%D0%BA%D0%BE%D0%BC%20%D0%B7%D0%BB%D0%B0%2C%20%D1%80%D0%B0%D1%81%D0%BF%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%3D%D0%B4%D0%B0%D0%BB%D0%B5%D0%BA%D0%BE.png")';
+                    frame.style.backgroundImage = 'url("images/tamara_angry.png")';
                 } else if (mood === "surprised") {
-                    frame.style.backgroundImage = 'url("https://storage.yandexcloud.net/audio-test-sc/Property%201%3D%D0%A2%D0%B0%D0%BC%D0%B0%D1%80%D0%B0%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2%D0%BD%D0%B0%20%D1%81%20%D0%B2%D0%BD%D1%83%D0%BA%D0%BE%D0%BC%20%D1%83%D0%B4%D0%B8%D0%B2%D0%BB%D0%B5%D0%BD%D0%B0%2C%20%D1%80%D0%B0%D1%81%D0%BF%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%3D%D0%B4%D0%B0%D0%BB%D0%B5%D0%BA%D0%BE.png")';
+                    frame.style.backgroundImage = 'url("images/tamara_surprised.png")';
                 } else {
-                    frame.style.backgroundImage = 'url("https://storage.yandexcloud.net/audio-test-sc/Property%201%3D%D0%A2%D0%B0%D0%BC%D0%B0%D1%80%D0%B0%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2%D0%BD%D0%B0%20%D1%81%20%D0%B2%D0%BD%D1%83%D0%BA%D0%BE%D0%BC%20%D1%81%D1%87%D0%B0%D1%81%D1%82%D0%BB%D0%B8%D0%B2%D0%B0%2C%20%D1%80%D0%B0%D1%81%D0%BF%D0%BE%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%3D%D0%B4%D0%B0%D0%BB%D0%B5%D0%BA%D0%BE.png")';
+                    frame.style.backgroundImage = 'url("images/tamara_happy.png")';
                 }
 
                 // Анимация смены эмоций

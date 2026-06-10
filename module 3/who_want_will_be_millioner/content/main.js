@@ -116,7 +116,6 @@ const popupInfo = document.getElementById("popup-info");
 const closePopupBtn = document.getElementById("close-popup-btn");
 
 const errorPopup = document.getElementById("error-popup");
-const successPopup = document.getElementById("success-popup");
 
 // Аудио
 const thinkingAudio = document.getElementById("thinking-audio");
@@ -130,8 +129,57 @@ function showScreen(screenEl) {
     screenEl.classList.add("active");
 }
 
+// --- Пропуск пауз по клику ---
+// Паузы (звук «верно/неверно», экран прогресса) нужны для проигрывания музыки,
+// но при быстрых нажатиях пользователь может пропустить их: повторный клик
+// досрочно завершает текущую паузу и сразу переходит к следующему шагу.
+let pendingTimer = null;
+let pendingAction = null;
+
+function schedulePause(action, delay) {
+    cancelPause();
+    pendingAction = action;
+    pendingTimer = setTimeout(resolvePause, delay);
+}
+
+function resolvePause() {
+    if (pendingTimer !== null) {
+        clearTimeout(pendingTimer);
+        pendingTimer = null;
+    }
+    const action = pendingAction;
+    pendingAction = null;
+    if (action) action();
+}
+
+function cancelPause() {
+    if (pendingTimer !== null) {
+        clearTimeout(pendingTimer);
+        pendingTimer = null;
+    }
+    pendingAction = null;
+}
+
+// Остановить короткие звуки обратной связи при пропуске паузы,
+// чтобы они не наслаивались на следующий экран
+function stopFeedbackAudio() {
+    [correctAudio, wrongAudio].forEach(a => {
+        a.pause();
+        a.currentTime = 0;
+    });
+}
+
+// Клик в любом месте во время паузы — пропустить ожидание и перейти дальше
+document.addEventListener("click", () => {
+    if (pendingAction) {
+        stopFeedbackAudio();
+        resolvePause();
+    }
+});
+
 // Инициализация игры
 function initGame() {
+    cancelPause();
     userScore = 0;
     currentQuestionIndex = 0;
     updateProgress();
@@ -174,14 +222,21 @@ function loadQuestion() {
     // Массив букв для вариантов (A, B, C, D)
     const letters = ["A", "B", "C", "D"];
 
+    // На вопрос уже ответили? Повторные клики тогда идут на пропуск паузы.
+    let answered = false;
+
     shuffledAnswers.forEach((ans, idx) => {
         const btn = document.createElement("button");
         // Добавляем буквы (A, B, C, D) оранжевым цветом
         btn.innerHTML = `<span class="answer-label">${letters[idx]}:</span><span class="answer-text">${ans.text}</span>`;
 
-        btn.addEventListener("click", () => {
-            // Запрещаем повторные клики
-            answersContainer.querySelectorAll("button").forEach(b => b.disabled = true);
+        btn.addEventListener("click", (e) => {
+            // Если уже ответили — клик не обрабатываем как новый ответ; он
+            // всплывёт до обработчика на document и просто пропустит паузу.
+            if (answered) return;
+            answered = true;
+            // Этот клик не должен сам пропустить только что запущенную паузу
+            e.stopPropagation();
 
             if (ans.correct) {
                 // Подсветка правильного ответа
@@ -189,7 +244,8 @@ function loadQuestion() {
                 correctAudio.currentTime = 0;
                 correctAudio.play();
 
-                setTimeout(() => {
+                // Пауза ~2 с под звук (пропускается кликом), затем следующий шаг
+                schedulePause(() => {
                     userScore++;
                     currentQuestionIndex++;
                     if (currentQuestionIndex >= questions.length) {
@@ -197,12 +253,10 @@ function loadQuestion() {
                     } else {
                         updateProgress();
                         showScreen(progressScreen);
-                        // Пауза на экране прогресса 1.5 секунды перед загрузкой следующего вопроса
-                        setTimeout(() => {
-                            loadQuestion();
-                        }, 1500);
+                        // Пауза на экране прогресса ~1.5 с (тоже пропускается кликом)
+                        schedulePause(loadQuestion, 1500);
                     }
-                }, 2000); // Задержка увеличена до 2000 мс для возможности прочитать результат
+                }, 2000);
             } else {
                 // Подсветка неправильного ответа
                 btn.classList.add("highlight-wrong");
@@ -215,9 +269,10 @@ function loadQuestion() {
                 wrongAudio.currentTime = 0;
                 wrongAudio.play();
 
-                setTimeout(() => {
+                // Пауза ~2 с под звук (пропускается кликом), затем экран ошибки
+                schedulePause(() => {
                     showScreen(errorScreen);
-                }, 2000); // Задержка увеличена до 2000 мс
+                }, 2000);
             }
         });
         answersContainer.appendChild(btn);
@@ -234,18 +289,21 @@ function loadQuestion() {
 // Победа
 function handleWinGame() {
     showScreen(successScreen);
-    successPopup.style.display = "none";
+    // Сразу передаём результат в систему (SCORM), не дожидаясь нажатия кнопки
+    sendScore();
     winGameAudio.currentTime = 0;
     winGameAudio.play();
-    winGameAudio.onended = () => {
-        successPopup.style.display = "flex";
-    };
 }
 
 // Клик по прогресс-бару, если он «active»
 progressList.addEventListener("click", (e) => {
     if (e.target.tagName === "LI" && e.target.classList.contains("active")) {
-        loadQuestion();
+        // Идёт пауза перед загрузкой вопроса — пропускаем её, иначе грузим вопрос
+        if (pendingAction) {
+            resolvePause();
+        } else {
+            loadQuestion();
+        }
     }
 });
 
@@ -261,10 +319,8 @@ retryBtn.addEventListener("click", () => {
     initGame();
 });
 
-// "Завершить" — отправка баллов в SCORM
+// "Закончить" — баллы уже отправлены при победе, просто переходим дальше
 finishBtn.addEventListener("click", () => {
-    // Предположим есть функция sendScore(userScore, maxScore)
-    sendScore();
     window.top.location.href = "https://sc-learn.ru/mod/page/view.php?id=382";
 });
 

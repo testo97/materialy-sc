@@ -90,7 +90,6 @@
 
             <h2 id="modal-title" style="font-size: 24px; color: #333;"></h2>
             <p id="modal-notice" style="display: none; text-align: left; font-size: 14px; color: #666; margin: 0 0 15px; line-height: 1.4;"></p>
-            <img id="modal-image" src="" alt="Изображение" style="display: none; width: 100%; height: auto; margin-bottom: 15px; border-radius: 6px;">
             <ul id="modal-description" style="text-align: left; padding: 0; list-style-type: none;"></ul>
             <button class="ok-button" onclick="closeModal()" style="margin-top: 20px; padding: 10px 20px; background-color: #e67e00; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; transition: background 0.3s ease;" onmouseover="this.style.backgroundColor='#d36f00'" onmouseout="this.style.backgroundColor='#e67e00'">Окей</button>
         </div>
@@ -171,9 +170,6 @@
             } else {
                 noticeEl.style.display = "none";
             }
-
-            document.getElementById("modal-image").src = menuItems[index].image;
-            document.getElementById("modal-image").style.display = "block";
 
             let descriptionList = document.getElementById("modal-description");
             descriptionList.innerHTML = "";
